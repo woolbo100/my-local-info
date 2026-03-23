@@ -1,65 +1,122 @@
-import Image from "next/image";
+import Link from "next/link";
+import fs from "fs";
+import path from "path";
+
+interface LocalInfo {
+  id: number;
+  name: string;
+  category: string;
+  startDate: string;
+  endDate: string;
+  location: string;
+  target: string;
+  summary: string;
+  link: string;
+}
 
 export default function Home() {
+  // 샘플 데이터 읽기
+  const filePath = path.join(process.cwd(), "public", "data", "local-info.json");
+  const fileData = fs.readFileSync(filePath, "utf-8");
+  const data: LocalInfo[] = JSON.parse(fileData);
+
+  // 카테고리별로 데이터 분류
+  const events = data.filter((item) => item.category === "행사");
+  const benefits = data.filter((item) => item.category === "혜택");
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="min-h-screen bg-orange-50 text-slate-800 font-sans">
+      {/* 1. 상단 헤더 */}
+      <header className="bg-white border-b border-orange-100 py-8 px-4 shadow-sm">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-3xl font-bold text-amber-900 mb-2">
+            🍊 성남시 생활 정보
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-amber-700 opacity-80">
+            우리 동네의 따끈따끈한 소식을 전해드립니다
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+      </header>
+
+      <main className="max-w-4xl mx-auto py-10 px-4 space-y-12">
+        {/* 2. 이번 달 행사/축제 */}
+        <section>
+          <div className="flex items-center gap-2 mb-6">
+            <span className="text-2xl">🎉</span>
+            <h2 className="text-2xl font-bold text-amber-900">이번 달 행사/축제</h2>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {events.map((event) => (
+              <Link key={event.id} href={`/info/${event.id}`}>
+                <article
+                  className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow border border-orange-100 h-full cursor-pointer"
+                >
+                  <div className="inline-block px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-semibold mb-3">
+                    {event.category}
+                  </div>
+                  <h3 className="text-lg font-bold mb-2 text-slate-900">
+                    {event.name}
+                  </h3>
+                  <div className="space-y-1 text-sm text-slate-600 mb-4">
+                    <p>📅 {event.startDate} ~ {event.endDate}</p>
+                    <p>📍 {event.location}</p>
+                  </div>
+                  <p className="text-sm text-slate-700 leading-relaxed mb-4">
+                    {event.summary}
+                  </p>
+                  <span className="inline-block text-amber-600 font-medium text-sm hover:underline">
+                    자세히 보기 →
+                  </span>
+                </article>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* 3. 지원금/혜택 정보 */}
+        <section>
+          <div className="flex items-center gap-2 mb-6">
+            <span className="text-2xl">💰</span>
+            <h2 className="text-2xl font-bold text-amber-900">지원금/혜택 정보</h2>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
+            {benefits.map((benefit) => (
+              <Link key={benefit.id} href={`/info/${benefit.id}`}>
+                <article
+                  className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow border-l-4 border-amber-400 h-full cursor-pointer"
+                >
+                  <div className="flex justify-between items-start mb-3">
+                    <div className="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">
+                      {benefit.category}
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 text-slate-900">
+                    {benefit.name}
+                  </h3>
+                  <p className="text-sm text-amber-800 font-medium mb-3">
+                    대상: {benefit.target}
+                  </p>
+                  <p className="text-sm text-slate-700 leading-relaxed mb-4">
+                    {benefit.summary}
+                  </p>
+                  <span className="inline-block text-amber-600 font-medium text-sm hover:underline">
+                    신청 방법 확인하기 →
+                  </span>
+                </article>
+              </Link>
+            ))}
+          </div>
+        </section>
       </main>
+
+      {/* 4. 하단 푸터 */}
+      <footer className="bg-slate-100 py-12 px-4 mt-20 border-t border-slate-200">
+        <div className="max-w-4xl mx-auto text-center text-sm text-slate-500 space-y-2">
+          <p>데이터 출처: 공공데이터포털 (data.go.kr)</p>
+          <p>마지막 업데이트: 2024년 3월 23일</p>
+          <p className="pt-4 opacity-70">© 2024 성남시 생활 정보. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 }
