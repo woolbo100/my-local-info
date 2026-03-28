@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚓️ 부산나우 (Busan Now)
 
-## Getting Started
+부산의 축제, 혜택, 맛집, 핫플, 데이트 코스 정보를 한눈에 볼 수 있는 지역 정보 포털 사이트입니다.
 
-First, run the development server:
+## 🚀 시작하기
+
+이 프로젝트는 **Next.js 16 (App Router)**와 **Tailwind CSS**를 기반으로 제작되었습니다.
+
+### 로컬 실행 방법
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+브라우저에서 [http://localhost:3000](http://localhost:3000)을 열어 확인하세요.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌐 배포 설정 (Cloudflare Pages)
 
-## Learn More
+이 프로젝트는 GitHub Actions를 통해 자동으로 배포됩니다. 정상적인 배포를 위해 아래 **GitHub Secrets** 설정을 완료해주세요.
 
-To learn more about Next.js, take a look at the following resources:
+### 1단계: 클라우드플레어 인증 관리
+깃허브 리포지토리의 **Settings > Secrets and variables > Actions** 메뉴에서 다음 값을 추가합니다.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `CLOUDFLARE_API_TOKEN`: 클라우드플레어 대시보드에서 생성한 API 토큰 (Pages 권한 필요)
+- `CLOUDFLARE_ACCOUNT_ID`: 클라우드플레어 대시보드 우측 하단에서 확인 가능한 계정 ID
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2단계: 프로젝트 이름 확인
+`.github/workflows/deploy.yml` 파일의 `projectName` 값이 클라우드플레어 페이지 스 프로젝트 이름과 일치하는지 확인하십시오. 현재 기본값은 `my-local-info`입니다.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📂 프로젝트 구조
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `src/app/`: 각 카테고리별 페이지 및 API 라우트
+- `src/components/`: 레이아웃, 카드, 섹션 등 재사용 컴포넌트
+- `src/data/`: 부산 지역 정보 샘플 데이터 (목데이터)
+- `src/types/`: 데이터 모델의 타입 정의
+
+---
+
+## 🛠 기술 스택
+
+- **Framework**: Next.js 16 (App Router)
+- **Styling**: Tailwind CSS
+- **Deployment**: Cloudflare Pages + GitHub Actions
+- **Language**: TypeScript
+
+## 📅 향후 계획
+
+- [ ] 공공데이터 API 실시간 연동 (축제, 혜택 등)
+- [ ] Gemini AI 기반 블로그 자동 생성 자동화
+- [ ] Google AdSense 및 쿠팡 파트너스 배너 연동
