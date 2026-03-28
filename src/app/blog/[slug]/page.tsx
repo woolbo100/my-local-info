@@ -3,6 +3,13 @@ import { blogPosts } from "@/data/blog";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
+// 정적 배포를 위해 모든 가능한 경로(slug)를 미리 생성합니다.
+export async function generateStaticParams() {
+  return blogPosts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
 interface Props {
   params: Promise<{ slug: string }>;
 }
