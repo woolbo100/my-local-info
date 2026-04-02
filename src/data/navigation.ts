@@ -10,4 +10,5 @@ export const navigation: NavItem[] = [
   { title: "핫플레이스", href: "/hotplaces" },
   { title: "데이트 코스", href: "/date-courses" },
   { title: "블로그", href: "/blog" },
+  { title: "소개", href: "/about" },
 ];

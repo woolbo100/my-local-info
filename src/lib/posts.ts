@@ -11,6 +11,7 @@ export interface PostData {
   summary: string;
   category: string;
   tags: string[];
+  sourceLink?: string;
   content?: string;
 }
 
@@ -45,6 +46,7 @@ export function getSortedPostsData(): PostData[] {
         summary: matterResult.data.summary || "",
         category: matterResult.data.category || "일반",
         tags: matterResult.data.tags || [],
+        sourceLink: matterResult.data.sourceLink || "",
       } as PostData;
     });
 
@@ -78,6 +80,7 @@ export async function getPostData(slug: string): Promise<PostData | null> {
     summary: matterResult.data.summary || "",
     category: matterResult.data.category || "일반",
     tags: matterResult.data.tags || [],
+    sourceLink: matterResult.data.sourceLink || "",
     content: matterResult.content,
   } as PostData;
 }

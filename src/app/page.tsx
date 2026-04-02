@@ -3,6 +3,7 @@ import Hero from "@/components/home/Hero";
 import CategoryGrid from "@/components/home/CategoryGrid";
 import SectionHeader from "@/components/common/SectionHeader";
 import InfoCard from "@/components/cards/InfoCard";
+import AdBanner from "@/components/AdBanner";
 
 // 임시 데이터 가져오기 (나중에 fetch나 server action으로 교체 가능)
 import { festivals } from "@/data/festivals";
@@ -11,15 +12,50 @@ import { foods } from "@/data/food";
 import { hotplaces } from "@/data/hotplaces";
 import { dateCourses } from "@/data/date-courses";
 import { blogPosts } from "@/data/blog";
+import { siteConfig } from "@/data/site";
 
 export default function Home() {
+  const eventSchemas = festivals.slice(0, 4).map((f) => ({
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": f.title,
+    "description": f.description,
+    "startDate": f.startDate,
+    "endDate": f.endDate,
+    "location": {
+      "@type": "Place",
+      "name": f.location,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "부산광역시"
+      }
+    }
+  }));
+
+  const serviceSchemas = benefits.slice(0, 4).map((b) => ({
+    "@context": "https://schema.org",
+    "@type": "GovernmentService",
+    "name": b.title,
+    "description": b.description,
+    "provider": {
+      "@type": "GovernmentOrganization",
+      "name": "성남시"
+    }
+  }));
+
   return (
     <div className="bg-slate-50/50 pb-20">
+      {/* ... existing content ... */}
       <Hero />
       <CategoryGrid />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
-        {/* 이번 주 부산 축제 */}
+        {/* ... (festivals grid) ... */}
+        {/* ... (benefits grid) ... */}
+        {/* ... (foods grid) ... */}
+        {/* ... (hotplaces grid) ... */}
+        {/* ... (dateCourses grid) ... */}
+        {/* ... (blogPosts grid) ... */}
         <section>
           <SectionHeader
             title="이번 주 부산 축제"
@@ -43,7 +79,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 지금 보는 부산 혜택 */}
+        <AdBanner />
+
         <section>
           <SectionHeader
             title="지금 보는 부산 혜택"
@@ -65,7 +102,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 부산 인기 맛집 */}
         <section>
           <SectionHeader
             title="부산 인기 맛집"
@@ -89,7 +125,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 부산 핫플 추천 */}
         <section>
           <SectionHeader
             title="부산 핫플 추천"
@@ -113,7 +148,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 부산 데이트 코스 */}
         <section>
           <SectionHeader
             title="부산 데이트 코스"
@@ -137,7 +171,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 최신 블로그 글 */}
         <section>
           <SectionHeader
             title="최신 블로그 글"
@@ -161,6 +194,14 @@ export default function Home() {
           </div>
         </section>
       </div>
+
+      {/* Structured Data (JSON-LD) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([...eventSchemas, ...serviceSchemas])
+        }}
+      />
     </div>
   );
 }

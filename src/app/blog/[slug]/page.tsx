@@ -4,6 +4,8 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getPostData, getSortedPostsData } from "@/lib/posts";
+import { siteConfig } from "@/data/site";
+import AdBanner from "@/components/AdBanner";
 
 interface PageProps {
   params: Promise<{
@@ -26,6 +28,14 @@ export async function generateMetadata({ params }: PageProps) {
   return {
     title: post.title,
     description: post.summary,
+    openGraph: {
+      title: post.title,
+      description: post.summary,
+      type: "article",
+      publishedTime: post.date,
+      authors: ["성남시 생활 정보"],
+      tags: post.tags,
+    },
   };
 }
 
@@ -58,7 +68,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             {post.category}
           </span>
           <time className="text-sm font-medium text-slate-400" dateTime={post.date}>
-            {post.date}
+            최종 업데이트: {post.date}
           </time>
         </div>
         <h1 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight tracking-tight mb-8">
@@ -83,20 +93,74 @@ export default async function BlogPostPage({ params }: PageProps) {
             {post.content || ""}
           </ReactMarkdown>
         </article>
+
+        {post.sourceLink && (
+          <div className="mt-12 pt-8 border-t border-slate-100">
+            <h4 className="text-sm font-bold text-slate-900 mb-2">출처 및 관련 링크</h4>
+            <a 
+              href={post.sourceLink} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm text-blue-600 hover:underline break-all"
+            >
+              {post.sourceLink}
+            </a>
+          </div>
+        )}
       </div>
+
+      <AdBanner />
       
       {/* Footer Info */}
       <footer className="mt-16 pt-8 border-t border-slate-100">
         <div className="bg-blue-50 p-8 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
             <h3 className="text-lg font-bold text-slate-900 mb-1">유익한 정보였나요?</h3>
-            <p className="text-slate-600 text-sm">부산의 더 많은 꿀팁을 놓치지 마세요!</p>
+            <p className="text-slate-600 text-sm">성남의 더 많은 꿀팁을 놓치지 마세요!</p>
           </div>
           <Link href="/" className="px-8 py-3 bg-blue-600 text-white rounded-2xl font-bold shadow-lg shadow-blue-200 hover:bg-blue-700 hover:shadow-xl transition-all">
             메인 페이지 구경하기
           </Link>
         </div>
       </footer>
+
+      <div className="mt-12 text-center">
+        <p className="text-xs text-slate-400 leading-relaxed">
+          이 글은 공공데이터포털(<a href="http://data.go.kr/" target="_blank" rel="noopener noreferrer" className="underline">data.go.kr</a>)의 정보를 바탕으로 AI가 작성하였습니다.<br />
+          정확한 내용은 원문 링크를 통해 확인해주세요.
+        </p>
+      </div>
+
+      {/* Structured Data (JSON-LD) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post.title,
+            "description": post.summary,
+            "datePublished": post.date,
+            "author": {
+              "@type": "Organization",
+              "name": "성남시 생활 정보",
+              "url": siteConfig.url
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "성남시 생활 정보",
+              "logo": {
+                "@type": "ImageObject",
+                "url": `${siteConfig.url}/logo.png`
+              }
+            },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": `${siteConfig.url}/blog/${slug}/`
+            }
+          })
+        }}
+      />
     </div>
   );
 }
