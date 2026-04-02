@@ -41,9 +41,15 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-bold text-slate-900 mb-6 uppercase tracking-wider">안내</h4>
             <ul className="space-y-3 text-sm text-slate-600">
-              <li>개인정보처리방침</li>
-              <li>이용약관</li>
-              <li>데이터 문의</li>
+              <li>
+                <Link href="/privacy" className="hover:text-blue-600 transition-colors">개인정보처리방침</Link>
+              </li>
+              <li>
+                <Link href="/terms" className="hover:text-blue-600 transition-colors">이용약관</Link>
+              </li>
+              <li>
+                데이터 문의: <a href="mailto:buzasun@naver.com" className="hover:text-blue-600 transition-colors">buzasun@naver.com</a>
+              </li>
               <li>공공데이터활용지원</li>
             </ul>
           </div>
