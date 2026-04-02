@@ -1,73 +1,102 @@
 import React from "react";
-import { blogPosts } from "@/data/blog";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { getPostData, getSortedPostsData } from "@/lib/posts";
 
-// 정적 배포를 위해 모든 가능한 경로(slug)를 미리 생성합니다.
+interface PageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+}
+
 export async function generateStaticParams() {
-  return blogPosts.map((post) => ({
+  const posts = getSortedPostsData();
+  return posts.map((post) => ({
     slug: post.slug,
   }));
 }
 
-interface Props {
-  params: Promise<{ slug: string }>;
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params;
+  const post = await getPostData(slug);
+  if (!post) return { title: "포스트를 찾을 수 없습니다." };
+
+  return {
+    title: post.title,
+    description: post.summary,
+  };
 }
 
-export default async function BlogPostPage({ params }: Props) {
+export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const post = await getPostData(slug);
 
   if (!post) {
     notFound();
   }
 
   return (
-    <div className="bg-white min-h-screen border-none text-slate-900 shadow-none">
-       {/* Simple Article Header */}
-       <div className="bg-slate-50 border-b border-slate-100 py-16">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6">
-             <div className="flex items-center gap-2 mb-4">
-                <span className="px-2.5 py-1 bg-blue-100 text-blue-700 rounded-lg text-xs font-bold">{post.category}</span>
-                <span className="text-slate-400 text-sm">|</span>
-                <span className="text-slate-500 text-sm">{post.date}</span>
-             </div>
-             <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-6">
-                {post.title}
-             </h1>
-             <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-slate-200" />
-                <span className="text-sm font-semibold text-slate-700">{post.author}</span>
-             </div>
-          </div>
-       </div>
+    <div className="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      {/* Back button */}
+      <div className="mb-12">
+        <Link 
+          href="/blog" 
+          className="inline-flex items-center text-sm font-semibold text-slate-500 hover:text-blue-600 transition-colors"
+        >
+          <svg className="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+          블로그 목록으로 돌아가기
+        </Link>
+      </div>
 
-       {/* Article Body */}
-       <article className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
-          <div className="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-6">
-             <p className="text-lg text-slate-600 font-medium italic border-l-4 border-slate-200 pl-6">
-                {post.description}
-             </p>
-             <div className="whitespace-pre-wrap">
-                {post.content}
-                {"\n"}
-                {"\n"}
-                여기에 실제 블로그 본문 내용이 풍부하게 들어갈 예정입니다. 현재는 샘플로 동작하며, 나중에 CMS나 마크다운 파일을 연동하면 자동으로 렌더링되게 구현할 수 있습니다.
-             </div>
-             
-             <div className="pt-12 border-t border-slate-100 flex flex-wrap gap-2">
-                {post.tags?.map(tag => (
-                   <span key={tag} className="text-xs px-3 py-1.5 bg-slate-50 text-slate-500 rounded-full">#{tag}</span>
-                ))}
-             </div>
+      <header className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="px-4 py-1.5 text-xs font-bold tracking-wide uppercase text-blue-700 bg-blue-100/50 rounded-full">
+            {post.category}
+          </span>
+          <time className="text-sm font-medium text-slate-400" dateTime={post.date}>
+            {post.date}
+          </time>
+        </div>
+        <h1 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight tracking-tight mb-8">
+          {post.title}
+        </h1>
+        
+        {post.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {post.tags.map((tag) => (
+              <span key={tag} className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
+                #{tag}
+              </span>
+            ))}
           </div>
+        )}
+      </header>
 
-          <div className="mt-16 pt-8 border-t border-slate-100">
-             <Link href="/blog" className="text-blue-600 font-bold hover:underline">
-                ← 전체 블로그 목록으로 돌아가기
-             </Link>
+      {/* Main Content */}
+      <div className="bg-white p-8 md:p-12 rounded-[2.5rem] border border-slate-100 shadow-sm">
+        <article className="prose prose-slate prose-lg md:prose-xl max-w-none prose-headings:font-black prose-a:text-blue-600 prose-img:rounded-3xl prose-pre:bg-slate-900 prose-pre:p-6 prose-pre:rounded-2xl">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {post.content || ""}
+          </ReactMarkdown>
+        </article>
+      </div>
+      
+      {/* Footer Info */}
+      <footer className="mt-16 pt-8 border-t border-slate-100">
+        <div className="bg-blue-50 p-8 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-center md:text-left">
+            <h3 className="text-lg font-bold text-slate-900 mb-1">유익한 정보였나요?</h3>
+            <p className="text-slate-600 text-sm">부산의 더 많은 꿀팁을 놓치지 마세요!</p>
           </div>
-       </article>
+          <Link href="/" className="px-8 py-3 bg-blue-600 text-white rounded-2xl font-bold shadow-lg shadow-blue-200 hover:bg-blue-700 hover:shadow-xl transition-all">
+            메인 페이지 구경하기
+          </Link>
+        </div>
+      </footer>
     </div>
   );
 }

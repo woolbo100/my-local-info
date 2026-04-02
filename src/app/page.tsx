@@ -25,7 +25,7 @@ export default function Home() {
             title="이번 주 부산 축제"
             description="놓치면 후회할 부산의 활기찬 축제 소식입니다."
             emoji="🎉"
-            viewAllLink="/festivals"
+            viewAllLink="/blog"
           />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {festivals.slice(0, 4).map((f) => (
@@ -36,7 +36,7 @@ export default function Home() {
                 date={`${f.startDate} ~ ${f.endDate}`}
                 location={f.location}
                 category={f.category}
-                href={`/festivals`}
+                href="/blog"
                 type="festival"
               />
             ))}
@@ -49,7 +49,7 @@ export default function Home() {
             title="지금 보는 부산 혜택"
             description="부산 시민이라면 꼭 챙겨야 할 다양한 지원 정책입니다."
             emoji="💰"
-            viewAllLink="/benefits"
+            viewAllLink="/blog"
           />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {benefits.slice(0, 4).map((b) => (
@@ -58,7 +58,7 @@ export default function Home() {
                 title={b.title}
                 description={b.description}
                 category={b.category}
-                href={`/benefits`}
+                href="/blog"
                 type="benefit"
               />
             ))}
@@ -71,7 +71,7 @@ export default function Home() {
             title="부산 인기 맛집"
             description="현지인들이 추천하는 진짜 맛집 리스트입니다."
             emoji="🍜"
-            viewAllLink="/food"
+            viewAllLink="/blog"
           />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {foods.slice(0, 4).map((f) => (
@@ -82,7 +82,7 @@ export default function Home() {
                 location={f.location}
                 category={f.category}
                 tags={f.tags}
-                href={`/food`}
+                href="/blog"
                 type="place"
               />
             ))}
@@ -95,7 +95,7 @@ export default function Home() {
             title="부산 핫플 추천"
             description="인생샷을 부르는 부산의 힙한 명소들입니다."
             emoji="📸"
-            viewAllLink="/hotplaces"
+            viewAllLink="/blog"
           />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {hotplaces.slice(0, 4).map((h) => (
@@ -106,7 +106,7 @@ export default function Home() {
                 location={h.location}
                 category={h.category}
                 tags={h.tags}
-                href={`/hotplaces`}
+                href="/blog"
                 type="place"
               />
             ))}
@@ -119,7 +119,7 @@ export default function Home() {
             title="부산 데이트 코스"
             description="연인과 함께하기 좋은 로맨틱한 동선 가이드입니다."
             emoji="👩‍❤️‍👨"
-            viewAllLink="/date-courses"
+            viewAllLink="/blog"
           />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {dateCourses.slice(0, 3).map((d) => (
@@ -130,7 +130,7 @@ export default function Home() {
                 location={d.location}
                 category={d.category}
                 tags={d.tags}
-                href={`/date-courses`}
+                href="/blog"
                 type="place"
               />
             ))}

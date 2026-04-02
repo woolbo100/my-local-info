@@ -90,6 +90,16 @@ export default function InfoCard({
                 ))}
               </div>
             )}
+            
+            {/* Added: 자세히 보기 버튼 */}
+            <div className="pt-4 mt-2 border-t border-slate-50 flex justify-end">
+               <span className="text-xs font-bold text-blue-600 group-hover:translate-x-1 transition-transform flex items-center">
+                  자세히 보기
+                  <svg className="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+               </span>
+            </div>
           </div>
         </div>
       </article>
