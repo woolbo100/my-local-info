@@ -20,7 +20,7 @@ interface CategoryPageProps {
 
 function PlaceholderCard({ label }: { label: string }) {
   return (
-    <article className="bg-white rounded-2xl border border-dashed border-slate-200 shadow-sm p-6 flex items-center justify-center min-h-[280px]">
+    <article className="flex min-h-[280px] items-center justify-center rounded-2xl border border-white/70 bg-white/92 p-6 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur-sm">
       <div className="text-center">
         <p className="text-sm font-semibold text-slate-500">{label}</p>
         <p className="mt-2 text-xs text-slate-400">곧 업데이트 예정</p>
@@ -35,7 +35,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: CategoryPageProps): Promise<Metadata> {
   const { category } = await params;
   if (!isCategoryRoute(category)) {
     return {};
@@ -69,11 +71,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const posts = getPostsByCategory(typedCategory);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <SectionHeader
         title={config.title}
         description={config.description}
         emoji={config.emoji}
+        tone="light"
       />
 
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -93,7 +96,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               />
             ))
           : Array.from({ length: 4 }).map((_, index) => (
-              <PlaceholderCard key={`${config.route}-${index}`} label={`${config.label} 콘텐츠`} />
+              <PlaceholderCard
+                key={`${config.route}-${index}`}
+                label={`${config.label} 콘텐츠`}
+              />
             ))}
       </div>
     </div>

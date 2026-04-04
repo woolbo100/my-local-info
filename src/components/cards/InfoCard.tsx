@@ -26,41 +26,41 @@ export default function InfoCard({
   type = "place",
 }: InfoCardProps) {
   const categoryColors: Record<string, string> = {
-    festival: "bg-red-50 text-red-700 border-red-100",
-    benefit: "bg-green-50 text-green-700 border-green-100",
-    place: "bg-blue-50 text-blue-700 border-blue-100",
-    blog: "bg-amber-50 text-amber-700 border-amber-100",
+    festival: "bg-red-50/95 text-red-700 border-red-100",
+    benefit: "bg-emerald-50/95 text-emerald-700 border-emerald-100",
+    place: "bg-blue-50/95 text-blue-700 border-blue-100",
+    blog: "bg-amber-50/95 text-amber-700 border-amber-100",
   };
 
   return (
     <Link href={href} className="group block h-full">
-      <article className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col h-full active:scale-[0.98]">
-        <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden">
+      <article className="bg-white/96 rounded-[20px] border border-white/80 shadow-[0_10px_30px_rgba(15,23,42,0.08)] hover:shadow-[0_18px_40px_rgba(15,23,42,0.14)] hover:-translate-y-1 transition-all duration-200 overflow-hidden flex flex-col h-full backdrop-blur-sm">
+        <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden rounded-t-[20px]">
           {image ? (
             <Image
               src={image}
               alt={title}
               fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
             />
           ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center space-y-2 bg-gradient-to-br from-slate-50 to-slate-200 group-hover:from-blue-50 group-hover:to-blue-100 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="w-full h-full flex flex-col items-center justify-center space-y-2 bg-gradient-to-br from-sky-50 to-blue-100 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-sky-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              <span className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">{type} Info</span>
+              <span className="text-[10px] text-sky-500 font-medium uppercase tracking-wider">{type} Info</span>
             </div>
           )}
           {category && (
-            <span className={`absolute top-3 left-3 px-2.5 py-1 rounded-lg text-[11px] font-bold border backdrop-blur-sm bg-white/90 ${categoryColors[type] || categoryColors.place}`}>
+            <span className={`absolute top-3 left-3 px-2.5 py-1 rounded-xl text-[11px] font-bold border backdrop-blur-sm bg-white/90 ${categoryColors[type] || categoryColors.place}`}>
               {category}
             </span>
           )}
         </div>
 
         <div className="p-5 flex flex-col flex-grow">
-          <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-2 line-clamp-1">
+          <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-700 transition-colors mb-2 line-clamp-1">
             {title}
           </h3>
           <p className="text-slate-600 text-sm leading-relaxed mb-4 line-clamp-2">
@@ -90,8 +90,8 @@ export default function InfoCard({
               </div>
             )}
 
-            <div className="pt-4 mt-2 border-t border-slate-50 flex justify-end">
-              <span className="text-xs font-bold text-blue-600 group-hover:translate-x-1 transition-transform flex items-center">
+            <div className="pt-4 mt-2 border-t border-slate-100 flex justify-end">
+              <span className="text-xs font-bold text-blue-600 group-hover:text-blue-700 group-hover:translate-x-1 transition-all flex items-center">
                 자세히 보기
                 <svg className="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
