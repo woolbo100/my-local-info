@@ -34,8 +34,9 @@ export default function Hero() {
             <span className="lg:block">한눈에</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-200">
-            부산에서 지금 꼭 알아야 할 축제, 맛집, 데이트 코스를
-            한눈에 확인할수 있는 부산 로컬 콘텐츠 허브입니다.
+            부산에서 지금 꼭 알아야 할 축제, 맛집, 데이트 코스를 한눈에 확인할수 있는
+            <br className="hidden sm:block" />
+            부산 로컬 콘텐츠 허브입니다.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4 md:justify-start">
             <Link
