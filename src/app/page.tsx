@@ -84,12 +84,19 @@ export default function Home() {
 
   return (
     <div className="relative overflow-hidden pb-24">
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#eef7ff_0%,#d9efff_28%,#bfe3f7_58%,#9fd0ee_100%)]" />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.35),transparent_28%),radial-gradient(circle_at_80%_15%,rgba(255,255,255,0.18),transparent_22%),radial-gradient(circle_at_50%_62%,rgba(121,197,235,0.22),transparent_34%)]" />
-      <div className="absolute inset-x-0 top-0 -z-10 h-[34rem] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.82),rgba(255,255,255,0)_62%)]" />
-      <div className="absolute inset-x-0 bottom-[-6rem] -z-10 h-[28rem] bg-[linear-gradient(180deg,rgba(120,193,234,0)_0%,rgba(74,151,204,0.16)_48%,rgba(33,112,171,0.24)_100%)]" />
-      <div className="absolute left-1/2 top-[26rem] -z-10 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.18),rgba(255,255,255,0)_72%)]" />
-      <div className="absolute inset-x-0 top-[24rem] -z-10 h-[20rem] bg-[radial-gradient(120%_70%_at_50%_100%,rgba(255,255,255,0.28),transparent_60%)] opacity-40" />
+      <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,#eef7ff_0%,#d9efff_30%,#b9ddf4_60%,#95c8e9_100%)]" />
+      <div
+        className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage:
+            "url('/images/main/buzasun_calm_sea_with_gentle_waves_soft_sunlight_reflection_o_933a687a-d858-40d0-bf87-569ccccae0a1_2.png')",
+        }}
+      />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(245,251,255,0.9)_0%,rgba(229,244,255,0.84)_18%,rgba(207,234,249,0.8)_42%,rgba(182,220,241,0.76)_68%,rgba(145,197,228,0.82)_100%)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_22%_18%,rgba(255,255,255,0.45),transparent_26%),radial-gradient(circle_at_80%_14%,rgba(255,255,255,0.22),transparent_20%),radial-gradient(circle_at_50%_60%,rgba(129,198,232,0.16),transparent_32%)]" />
+      <div className="absolute inset-x-0 top-0 -z-10 h-[34rem] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.86),rgba(255,255,255,0)_62%)]" />
+      <div className="absolute inset-x-0 bottom-[-6rem] -z-10 h-[30rem] bg-[linear-gradient(180deg,rgba(88,160,207,0)_0%,rgba(66,142,192,0.14)_46%,rgba(32,105,157,0.22)_100%)]" />
+      <div className="absolute inset-x-0 top-[24rem] -z-10 h-[22rem] bg-[radial-gradient(120%_70%_at_50%_100%,rgba(255,255,255,0.24),transparent_60%)] opacity-50" />
 
       <Hero />
       <CategoryGrid />
