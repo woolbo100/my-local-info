@@ -20,6 +20,7 @@ import {
 } from "@/lib/content-config";
 import InfoCard from "@/components/cards/InfoCard";
 import AdBanner from "@/components/AdBanner";
+import DarkOceanShell from "@/components/layout/DarkOceanShell";
 
 interface PostPageProps {
   params: Promise<{
@@ -44,7 +45,9 @@ export async function generateStaticParams() {
   return getAllPostParams();
 }
 
-export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PostPageProps): Promise<Metadata> {
   const { category, slug } = await params;
   if (!isCategoryRoute(category)) {
     return {};
@@ -58,7 +61,7 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
   const imageUrl = toAbsoluteUrl(post.thumbnail || post.image);
 
   return {
-    title: `${post.title} | 부산나우`,
+    title: `${post.title} | ${siteConfig.name}`,
     description: post.excerpt,
     keywords: post.tags,
     alternates: {
@@ -94,13 +97,13 @@ export default async function PostPage({ params }: PostPageProps) {
   const imageUrl = toAbsoluteUrl(post.thumbnail || post.image);
 
   return (
-    <div className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-slate-100">
+    <DarkOceanShell className="max-w-5xl px-4 py-16 text-slate-100 sm:px-6 lg:px-8">
       <div className="mb-12">
         <Link
           href={`/${typedCategory}`}
-          className="inline-flex items-center text-sm font-semibold text-slate-300 hover:text-white transition-colors"
+          className="inline-flex items-center text-sm font-semibold text-slate-300 transition-colors hover:text-white"
         >
-          <svg className="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
           {config.label} 목록으로 돌아가기
@@ -108,22 +111,22 @@ export default async function PostPage({ params }: PostPageProps) {
       </div>
 
       <header className="mb-12">
-        <div className="flex items-center gap-3 mb-4 flex-wrap">
-          <span className="px-4 py-1.5 text-xs font-bold tracking-wide uppercase text-blue-700 bg-blue-100/80 rounded-full">
+        <div className="mb-4 flex flex-wrap items-center gap-3">
+          <span className="rounded-full bg-blue-100/90 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-blue-700">
             {post.categoryLabel}
           </span>
           <time className="text-sm font-medium text-slate-300" dateTime={post.date}>
             {getDisplayDate(post)}
           </time>
         </div>
-        <h1 className="text-4xl md:text-5xl font-black text-white leading-tight tracking-tight mb-6">
+        <h1 className="mb-6 text-4xl font-black leading-tight tracking-tight text-white md:text-5xl">
           {post.title}
         </h1>
-        <p className="text-lg text-slate-200 leading-relaxed">{post.excerpt}</p>
+        <p className="text-lg leading-relaxed text-slate-200">{post.excerpt}</p>
         {post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-6">
+          <div className="mt-6 flex flex-wrap gap-2">
             {post.tags.map((tag) => (
-              <span key={tag} className="text-xs text-slate-700 bg-white px-2 py-1 rounded">
+              <span key={tag} className="rounded bg-white px-2 py-1 text-xs text-slate-700">
                 #{tag}
               </span>
             ))}
@@ -131,8 +134,8 @@ export default async function PostPage({ params }: PostPageProps) {
         )}
       </header>
 
-      <div className="bg-white p-8 md:p-12 rounded-[2.5rem] border border-slate-100 shadow-sm">
-        <div className="relative aspect-[16/9] rounded-3xl overflow-hidden bg-slate-100 mb-10">
+      <div className="rounded-[2.5rem] border border-slate-100 bg-white p-8 shadow-sm md:p-12">
+        <div className="relative mb-10 aspect-[16/9] overflow-hidden rounded-3xl bg-slate-100">
           <Image
             src={post.thumbnail}
             alt={post.title}
@@ -143,30 +146,30 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
 
         {(post.location || isEventPost(post)) && (
-          <section className="mb-10 rounded-3xl bg-slate-50 border border-slate-100 p-6 md:p-8">
-            <h2 className="text-xl font-bold text-slate-900 mb-4">콘텐츠 정보</h2>
+          <section className="mb-10 rounded-3xl border border-slate-100 bg-slate-50 p-6 md:p-8">
+            <h2 className="mb-4 text-xl font-bold text-slate-900">콘텐츠 정보</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               {post.location && (
                 <div>
-                  <p className="text-xs font-semibold text-slate-400 mb-1">위치</p>
+                  <p className="mb-1 text-xs font-semibold text-slate-400">위치</p>
                   <p className="text-slate-700">{post.location}</p>
                 </div>
               )}
               {post.startDate && (
                 <div>
-                  <p className="text-xs font-semibold text-slate-400 mb-1">시작일</p>
+                  <p className="mb-1 text-xs font-semibold text-slate-400">시작일</p>
                   <p className="text-slate-700">{post.startDate}</p>
                 </div>
               )}
               {post.endDate && (
                 <div>
-                  <p className="text-xs font-semibold text-slate-400 mb-1">종료일</p>
+                  <p className="mb-1 text-xs font-semibold text-slate-400">종료일</p>
                   <p className="text-slate-700">{post.endDate}</p>
                 </div>
               )}
               {post.isFree !== null && post.isFree !== undefined && (
                 <div>
-                  <p className="text-xs font-semibold text-slate-400 mb-1">이용 요금</p>
+                  <p className="mb-1 text-xs font-semibold text-slate-400">이용 요금</p>
                   <p className="text-slate-700">{post.isFree ? "무료" : "유료"}</p>
                 </div>
               )}
@@ -174,7 +177,7 @@ export default async function PostPage({ params }: PostPageProps) {
           </section>
         )}
 
-        <article className="prose prose-slate prose-lg md:prose-xl max-w-none prose-headings:font-black prose-a:text-blue-600 prose-img:rounded-3xl prose-pre:bg-slate-900 prose-pre:p-6 prose-pre:rounded-2xl">
+        <article className="prose prose-slate max-w-none prose-lg md:prose-xl prose-headings:font-black prose-a:text-blue-600 prose-img:rounded-3xl prose-pre:rounded-2xl prose-pre:bg-slate-900 prose-pre:p-6">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content || ""}</ReactMarkdown>
         </article>
       </div>
@@ -183,7 +186,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
       {relatedPosts.length > 0 && (
         <section className="mt-16">
-          <div className="flex items-center gap-2 mb-6">
+          <div className="mb-6 flex items-center gap-2">
             <span className="text-2xl">{config.emoji}</span>
             <h2 className="text-2xl font-bold text-white">관련 글</h2>
           </div>
@@ -245,6 +248,6 @@ export default async function PostPage({ params }: PostPageProps) {
           }}
         />
       )}
-    </div>
+    </DarkOceanShell>
   );
 }

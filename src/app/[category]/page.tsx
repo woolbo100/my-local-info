@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SectionHeader from "@/components/common/SectionHeader";
 import InfoCard from "@/components/cards/InfoCard";
+import DarkOceanShell from "@/components/layout/DarkOceanShell";
 import {
   CATEGORY_ORDER,
   getCategoryConfig,
@@ -45,13 +46,13 @@ export async function generateMetadata({
 
   const config = getCategoryConfig(category);
   return {
-    title: `${config.title} | 부산나우`,
+    title: `${config.title} | ${siteConfig.name}`,
     description: config.description,
     alternates: {
       canonical: `${siteConfig.url}/${config.route}`,
     },
     openGraph: {
-      title: `${config.title} | 부산나우`,
+      title: `${config.title} | ${siteConfig.name}`,
       description: config.description,
       url: `${siteConfig.url}/${config.route}`,
       siteName: siteConfig.name,
@@ -71,7 +72,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const posts = getPostsByCategory(typedCategory);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <DarkOceanShell className="max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <SectionHeader
         title={config.title}
         description={config.description}
@@ -102,6 +103,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               />
             ))}
       </div>
-    </div>
+    </DarkOceanShell>
   );
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { siteConfig } from "@/data/site";
+import DarkOceanShell from "@/components/layout/DarkOceanShell";
 
 export const metadata = {
   title: `소개 | ${siteConfig.name}`,
@@ -9,7 +10,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8">
+    <DarkOceanShell className="max-w-4xl px-4 py-20 sm:px-6 lg:px-8">
       <header className="mb-16 text-center">
         <h1 className="mb-4 text-4xl font-black leading-tight tracking-tight text-white md:text-5xl">
           소개
@@ -42,8 +43,8 @@ export default function AboutPage() {
           </p>
           <p className="leading-relaxed text-slate-600">
             흩어져 있는 공공 정보와 로컬 콘텐츠를 정리해 친근하고 읽기 쉬운
-            형태로 전달함으로써, 부산의 일상과 여행에 실제로 도움이 되는
-            정보 플랫폼을 지향합니다.
+            형태로 전달함으로써, 부산의 일상과 여행에 실제로 도움이 되는 정보
+            플랫폼을 지향합니다.
           </p>
         </section>
 
@@ -52,8 +53,8 @@ export default function AboutPage() {
             <span className="text-blue-600">📌</span> 데이터 출처
           </h2>
           <p className="mb-4 leading-relaxed text-slate-600">
-            사이트에서 제공하는 정보는 공공데이터포털(data.go.kr), 지방자치단체
-            및 공공기관의 공식 공지, 지역 기반 정보 등을 바탕으로 정리됩니다.
+            사이트에서 제공하는 정보는 공공데이터포털(data.go.kr), 지방자치단체 및
+            공공기관의 공식 공지, 지역 기반 정보 등을 바탕으로 정리됩니다.
           </p>
           <ul className="list-inside list-disc space-y-2 text-slate-600">
             <li>공공데이터포털(data.go.kr) 제공 데이터</li>
@@ -97,6 +98,6 @@ export default function AboutPage() {
           메인으로 돌아가기
         </Link>
       </div>
-    </div>
+    </DarkOceanShell>
   );
 }
