@@ -94,11 +94,11 @@ export default async function PostPage({ params }: PostPageProps) {
   const imageUrl = toAbsoluteUrl(post.thumbnail || post.image);
 
   return (
-    <div className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+    <div className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-slate-100">
       <div className="mb-12">
         <Link
           href={`/${typedCategory}`}
-          className="inline-flex items-center text-sm font-semibold text-slate-500 hover:text-blue-600 transition-colors"
+          className="inline-flex items-center text-sm font-semibold text-slate-300 hover:text-white transition-colors"
         >
           <svg className="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -109,21 +109,21 @@ export default async function PostPage({ params }: PostPageProps) {
 
       <header className="mb-12">
         <div className="flex items-center gap-3 mb-4 flex-wrap">
-          <span className="px-4 py-1.5 text-xs font-bold tracking-wide uppercase text-blue-700 bg-blue-100/50 rounded-full">
+          <span className="px-4 py-1.5 text-xs font-bold tracking-wide uppercase text-blue-700 bg-blue-100/80 rounded-full">
             {post.categoryLabel}
           </span>
-          <time className="text-sm font-medium text-slate-400" dateTime={post.date}>
+          <time className="text-sm font-medium text-slate-300" dateTime={post.date}>
             {getDisplayDate(post)}
           </time>
         </div>
-        <h1 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight tracking-tight mb-6">
+        <h1 className="text-4xl md:text-5xl font-black text-white leading-tight tracking-tight mb-6">
           {post.title}
         </h1>
-        <p className="text-lg text-slate-600 leading-relaxed">{post.excerpt}</p>
+        <p className="text-lg text-slate-200 leading-relaxed">{post.excerpt}</p>
         {post.tags.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-6">
             {post.tags.map((tag) => (
-              <span key={tag} className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
+              <span key={tag} className="text-xs text-slate-700 bg-white px-2 py-1 rounded">
                 #{tag}
               </span>
             ))}
@@ -185,7 +185,7 @@ export default async function PostPage({ params }: PostPageProps) {
         <section className="mt-16">
           <div className="flex items-center gap-2 mb-6">
             <span className="text-2xl">{config.emoji}</span>
-            <h2 className="text-2xl font-bold text-slate-900">관련 글</h2>
+            <h2 className="text-2xl font-bold text-white">관련 글</h2>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {relatedPosts.map((relatedPost) => (

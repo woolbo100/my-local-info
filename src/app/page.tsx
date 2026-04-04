@@ -85,7 +85,7 @@ export default function Home() {
       <Hero />
       <CategoryGrid />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 sm:pt-20 space-y-24">
         {CATEGORY_ORDER.slice(0, 2).map((category) => (
           <HomeSection key={category} category={category} />
         ))}

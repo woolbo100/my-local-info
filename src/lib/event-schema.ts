@@ -45,7 +45,7 @@ export function buildEventJsonLd(post: ContentPost) {
     },
     organizer: {
       "@type": "Organization",
-      name: siteConfig.name,
+      name: "부산시",
       url: siteConfig.url,
     },
     offers: {

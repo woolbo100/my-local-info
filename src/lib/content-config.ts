@@ -23,13 +23,13 @@ export const DEFAULT_THUMBNAIL = "/images/hero/busan-gwangan-night.jpg";
 export const CATEGORY_CONFIG: Record<CategoryRoute, CategoryConfig> = {
   festivals: {
     route: "festivals",
-    label: "축제",
-    title: "부산 축제",
-    description: "부산에서 열리는 계절별 축제 소식을 한눈에 확인하세요.",
-    homeDescription: "부산에서 열리는 대표 축제를 최신순으로 모아봤어요.",
-    emoji: "🎆",
+    label: "축제/행사",
+    title: "부산 축제/행사",
+    description: "부산에서 열리는 축제와 행사를 한곳에서 확인하세요.",
+    homeDescription: "부산에서 열리는 대표 축제와 행사를 최신순으로 모아봤어요.",
+    emoji: "🎉",
     cardType: "festival",
-    contentDirs: ["festivals"],
+    contentDirs: ["festivals", "events"],
   },
   events: {
     route: "events",
@@ -95,7 +95,6 @@ export const CATEGORY_CONFIG: Record<CategoryRoute, CategoryConfig> = {
 
 export const CATEGORY_ORDER: CategoryRoute[] = [
   "festivals",
-  "events",
   "benefits",
   "food",
   "hotplaces",
