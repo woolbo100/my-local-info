@@ -12,15 +12,19 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "성남시 생활 정보 | 행사·혜택·지원금 안내",
-  description: "성남시 주민을 위한 지역 행사, 축제, 지원금, 혜택 정보를 매일 업데이트합니다.",
+  title: siteConfig.name,
+  description: siteConfig.description,
+  metadataBase: new URL(siteConfig.url),
   openGraph: {
-    title: "성남시 생활 정보 | 행사·혜택·지원금 안내",
-    description: "성남시 주민을 위한 지역 행사, 축제, 지원금, 혜택 정보를 매일 업데이트합니다.",
+    title: siteConfig.name,
+    description: siteConfig.description,
     url: siteConfig.url,
-    siteName: "성남시 생활 정보",
+    siteName: siteConfig.name,
     locale: "ko_KR",
     type: "website",
+  },
+  alternates: {
+    canonical: siteConfig.url,
   },
   verification: {
     google: "W52msq-ecdWlgVyvAoZHm45aFZcssKcAuVxPCUxiEQk",
@@ -33,17 +37,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID;
-  const isAdsenseEnabled = adsenseId && adsenseId !== "나중에_입력";
+  const isAdsenseEnabled = adsenseId && adsenseId !== "여기에-입력";
 
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
-  const isGaEnabled = gaId && gaId !== "나중에_입력";
+  const isGaEnabled = gaId && gaId !== "여기에-입력";
 
   return (
-    <html
-      lang="ko"
-      className={`${inter.variable} h-full antialiased`}
-    >
+    <html lang="ko" className={`${inter.variable} h-full antialiased`}>
       <head>
+        <meta name="google-site-verification" content="W52msq-ecdWlgVyvAoZHm45aFZcssKcAuVxPCUxiEQk" />
         {isAdsenseEnabled && (
           <Script
             async
@@ -64,7 +66,6 @@ export default function RootLayout({
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-
                 gtag('config', '${gaId}');
               `}
             </Script>
@@ -76,7 +77,6 @@ export default function RootLayout({
         <main className="flex-grow">{children}</main>
         <Footer />
 
-        {/* Structured Data (JSON-LD) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -84,29 +84,17 @@ export default function RootLayout({
               {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                "name": "성남시 생활 정보",
-                "url": siteConfig.url,
-                "description": "성남시 주민을 위한 지역 행사, 축제, 지원금, 혜택 정보"
+                name: siteConfig.name,
+                url: siteConfig.url,
+                description: siteConfig.description,
               },
               {
                 "@context": "https://schema.org",
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                  {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "홈",
-                    "item": siteConfig.url
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "블로그",
-                    "item": `${siteConfig.url}/blog`
-                  }
-                ]
-              }
-            ])
+                "@type": "Organization",
+                name: siteConfig.name,
+                url: siteConfig.url,
+              },
+            ]),
           }}
         />
       </body>

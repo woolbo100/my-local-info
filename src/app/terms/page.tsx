@@ -1,8 +1,9 @@
 import React from "react";
+import { siteConfig } from "@/data/site";
 
 export const metadata = {
-  title: "이용약관 | 성남시 생활 정보",
-  description: "성남시 생활 정보 사이트의 이용약관입니다.",
+  title: `이용약관 | ${siteConfig.name}`,
+  description: `${siteConfig.name} 사이트의 이용약관입니다.`,
 };
 
 export default function TermsPage() {
@@ -19,7 +20,7 @@ export default function TermsPage() {
         <section>
           <h2 className="text-xl font-bold text-slate-900 mb-4">제1조 (목적)</h2>
           <p>
-            본 약관은 '성남시 생활 정보'(이하 '사이트')가 제공하는 제반 서비스의 이용 조건 및 절차에 관한 사항을 규정함을 목적으로 합니다.
+            '${siteConfig.name}'(이하 '사이트')가 제공하는 제반 서비스의 이용 조건 및 절차에 관한 사항을 규정함을 목적으로 합니다.
           </p>
         </section>
 

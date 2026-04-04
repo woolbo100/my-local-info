@@ -1,5 +1,17 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
+
+function escapeYamlString(value) {
+  return String(value ?? "").replace(/"/g, '\\"');
+}
+
+function toEventImagePath(value) {
+  if (!value) {
+    return "";
+  }
+
+  return String(value).trim();
+}
 
 async function generateBlogPost() {
   const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -9,16 +21,15 @@ async function generateBlogPost() {
     return;
   }
 
-  const postsDir = path.join(__dirname, '../src/content/posts');
-  const dataFilePath = path.join(__dirname, '../public/data/local-info.json');
+  const postsDir = path.join(__dirname, "../src/content/posts");
+  const dataFilePath = path.join(__dirname, "../public/data/local-info.json");
 
-  // 1단계. 최신 데이터 확인
   if (!fs.existsSync(dataFilePath)) {
     console.log("데이터 파일이 없습니다.");
     return;
   }
 
-  const data = JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
+  const data = JSON.parse(fs.readFileSync(dataFilePath, "utf8"));
   if (data.length === 0) {
     console.log("데이터가 없습니다.");
     return;
@@ -27,16 +38,17 @@ async function generateBlogPost() {
   const lastItem = data[data.length - 1];
   const targetName = lastItem.name;
 
-  // 기존 파일들과 비교 (Frontmatter의 title 혹은 파일명 등 체크)
   const files = fs.readdirSync(postsDir);
   let alreadyExists = false;
   for (const file of files) {
-    if (file.endsWith('.md')) {
-      const content = fs.readFileSync(path.join(postsDir, file), 'utf8');
-      if (content.includes(`title: "${targetName}"`) || content.includes(`title: ${targetName}`)) {
-        alreadyExists = true;
-        break;
-      }
+    if (!file.endsWith(".md")) {
+      continue;
+    }
+
+    const content = fs.readFileSync(path.join(postsDir, file), "utf8");
+    if (content.includes(`title: "${targetName}"`) || content.includes(`title: ${targetName}`)) {
+      alreadyExists = true;
+      break;
     }
   }
 
@@ -45,58 +57,76 @@ async function generateBlogPost() {
     return;
   }
 
-  // 2단계. Gemini AI로 블로그 글 생성
-  const today = new Date().toISOString().split('T')[0];
-  const prompt = `아래 공공서비스 정보를 바탕으로 블로그 글을 작성해줘.
+  const today = new Date().toISOString().split("T")[0];
+  const startDate = lastItem.startDate || lastItem.date || today;
+  const endDate = lastItem.endDate || lastItem.date || today;
+  const location = lastItem.location || "";
+  const image = toEventImagePath(lastItem.image || "");
+  const isFree = typeof lastItem.isFree === "boolean" ? lastItem.isFree : true;
 
-정보: ${JSON.stringify(lastItem, null, 2)}
+  const prompt = `아래 공공서비스 또는 행사 정보를 바탕으로 블로그 글을 작성해줘.
 
-아래 형식으로 출력해줘. 반드시 이 형식만 출력하고 다른 텍스트는 없이:
+입력 데이터:
+${JSON.stringify(lastItem, null, 2)}
+
+반드시 아래 마크다운 형식만 출력해줘. 설명문이나 코드펜스는 넣지 마.
 ---
-title: (친근하고 흥미로운 제목)
+title: "(매력적인 제목)"
 date: ${today}
-summary: (한 줄 요약)
-category: 정보
-tags: [태그1, 태그2, 태그3]
-sourceLink: ${lastItem.link || ""}
+summary: "(한 줄 요약)"
+category: "정보"
+tags: ["태그1", "태그2", "태그3"]
+sourceLink: "${escapeYamlString(lastItem.link || "")}"
+startDate: "${escapeYamlString(startDate)}"
+endDate: "${escapeYamlString(endDate)}"
+location: "${escapeYamlString(location)}"
+image: "${escapeYamlString(image)}"
+isFree: ${isFree}
 ---
 
-(본문: 800자 이상, 친근한 블로그 톤, 추천 이유 3가지 포함, 신청 방법 안내)
+(본문은 800자 이상으로 작성)
 
-FILENAME: ${today}-keyword 형식으로 파일명도 출력해줘. 키워드는 영문으로. 마지막 줄에 위치시켜줘.`;
+추가 규칙:
+- 제목은 그대로 frontmatter의 title에 넣어.
+- 시작일/종료일/위치/이미지/무료 여부는 반드시 frontmatter에 채워.
+- 이벤트성 글이 아니어도 입력값이 있으면 그대로 유지해.
+- 마지막 줄에는 반드시 FILENAME: ${today}-keyword 형식으로 파일명 후보를 적어.
+`;
 
   const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
   try {
     const response = await fetch(geminiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }]
-      })
+        contents: [{ parts: [{ text: prompt }] }],
+      }),
     });
 
     const result = await response.json();
     let aiResponse = result.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
-    // 3단계. 파일 저장
-    // FILENAME 추출
     const filenameMatch = aiResponse.match(/FILENAME:\s*([^\n\r]+)/i);
     let filename = `${today}-post.md`;
     if (filenameMatch) {
       filename = filenameMatch[1].trim();
-      if (!filename.endsWith('.md')) filename += '.md';
-      // 응답 본문에서 FILENAME 줄 제거
-      aiResponse = aiResponse.split('\n').filter(line => !line.toUpperCase().includes('FILENAME:')).join('\n').trim();
+      if (!filename.endsWith(".md")) {
+        filename += ".md";
+      }
+
+      aiResponse = aiResponse
+        .split("\n")
+        .filter((line) => !line.toUpperCase().includes("FILENAME:"))
+        .join("\n")
+        .trim();
     }
 
-    // 마크다운 코드 블록 제거 (혹시 있다면)
-    aiResponse = aiResponse.replace(/```markdown/g, '').replace(/```/g, '').trim();
+    aiResponse = aiResponse.replace(/```markdown/g, "").replace(/```/g, "").trim();
 
     const finalPath = path.join(postsDir, filename);
-    fs.writeFileSync(finalPath, aiResponse, 'utf8');
+    fs.writeFileSync(finalPath, aiResponse, "utf8");
     console.log(`블로그 글 생성 완료: ${filename}`);
-
   } catch (error) {
     console.error("블로그 생성 중 오류 발생:", error);
   }

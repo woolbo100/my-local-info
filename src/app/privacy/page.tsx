@@ -1,8 +1,9 @@
 import React from "react";
+import { siteConfig } from "@/data/site";
 
 export const metadata = {
-  title: "개인정보처리방침 | 성남시 생활 정보",
-  description: "성남시 생활 정보 사이트의 개인정보처리방침입니다.",
+  title: `개인정보처리방침 | ${siteConfig.name}`,
+  description: `${siteConfig.name} 사이트의 개인정보처리방침입니다.`,
 };
 
 export default function PrivacyPage() {
@@ -19,7 +20,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-xl font-bold text-slate-900 mb-4">1. 개인정보의 수집 및 이용 목적</h2>
           <p>
-            '성남시 생활 정보'(이하 '사이트')는 이용자들에게 별도의 회원가입 없이 서비스를 제공하고 있으며, 서비스 이용 과정에서 자동으로 생성되는 정보(IP 주소, 쿠키, 방문 기록 등) 외에 개인정보를 수집하지 않습니다. 수집된 자동 생성 정보는 사이트의 이용 통계 분석 및 서비스 개선을 위해서만 사용됩니다.
+            '{siteConfig.name}'(이하 '사이트')는 이용자들에게 별도의 회원가입 없이 서비스를 제공하고 있으며, 서비스 이용 과정에서 자동으로 생성되는 정보(IP 주소, 쿠키, 방문 기록 등) 외에 개인정보를 수집하지 않습니다. 수집된 자동 생성 정보는 사이트의 이용 통계 분석 및 서비스 개선을 위해서만 사용됩니다.
           </p>
         </section>
 

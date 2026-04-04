@@ -5,7 +5,6 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-slate-900 py-24 sm:py-32">
-      {/* Background decoration */}
       <div aria-hidden="true" className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0">
           <Image
@@ -26,26 +25,27 @@ export default function Hero() {
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl text-center md:text-left mx-auto md:mx-0">
           <div className="mb-6 inline-flex items-center rounded-full bg-blue-300/10 px-3 py-1 text-sm font-semibold leading-6 text-blue-100 ring-1 ring-inset ring-blue-200/25 backdrop-blur-sm">
-            지금 가장 핫한 로컬 정보 🌊
+            파일 기반 로컬 콘텐츠 운영
           </div>
           <h1 className="mb-6 text-4xl font-black tracking-tight text-white sm:text-6xl">
-            부산의 축제, 혜택, 맛집, 핫플, 데이트 코스를 <br className="hidden sm:block" /> 한눈에!
+            부산의 축제, 행사, 혜택, 맛집,
+            <br className="hidden sm:block" /> 핫플레이스와 데이트 코스를 한곳에서
           </h1>
           <p className="mb-10 max-w-lg text-lg leading-8 text-slate-200">
-            지역 현지인이 전하는 진짜 부산 이야기와 숨겨진 보석 같은 명소들, 놓칠 수 없는 지원 혜택까지 모두 담았습니다.
+            새 마크다운 파일만 추가하면 홈, 목록, 상세 페이지에 자동 반영되는 부산 로컬 콘텐츠 허브입니다.
           </p>
           <div className="flex flex-wrap gap-4 justify-center md:justify-start">
             <Link
-              href="/blog"
+              href="/festivals"
               className="rounded-xl bg-blue-600 px-6 py-3 text-base font-bold text-white shadow-lg shadow-blue-900/20 hover:bg-blue-500 transition-all active:scale-95"
             >
-              축제 보러가기 →
+              축제 보러가기
             </Link>
             <Link
               href="/blog"
               className="rounded-xl bg-white/10 px-6 py-3 text-base font-bold text-white backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all active:scale-95"
             >
-              추천 블로그 보기
+              블로그 콘텐츠 보기
             </Link>
           </div>
         </div>

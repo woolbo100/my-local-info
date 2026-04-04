@@ -8,7 +8,6 @@ export default function Footer() {
     <footer className="bg-slate-50 border-t border-slate-200 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <span className="text-2xl">⚓️</span>
@@ -18,12 +17,11 @@ export default function Footer() {
               {siteConfig.description}
               <br />
               <span className="mt-4 block font-medium text-slate-400">
-                일부 정보는 공공데이터 및 수동 큐레이션 기반
+                관리자 페이지 없이 파일 기반 콘텐츠로 운영되는 부산 로컬 콘텐츠 사이트
               </span>
             </p>
           </div>
 
-          {/* Links */}
           <div>
             <h4 className="text-sm font-bold text-slate-900 mb-6 uppercase tracking-wider">메뉴</h4>
             <ul className="space-y-3">
@@ -37,7 +35,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Support/Other */}
           <div>
             <h4 className="text-sm font-bold text-slate-900 mb-6 uppercase tracking-wider">안내</h4>
             <ul className="space-y-3 text-sm text-slate-600">
@@ -50,7 +47,7 @@ export default function Footer() {
               <li>
                 데이터 문의: <a href="mailto:buzasun@naver.com" className="hover:text-blue-600 transition-colors">buzasun@naver.com</a>
               </li>
-              <li>공공데이터활용지원</li>
+              <li>공공데이터 및 로컬 큐레이션 기반</li>
             </ul>
           </div>
         </div>

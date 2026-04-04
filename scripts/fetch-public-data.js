@@ -43,10 +43,10 @@ async function fetchPublicData() {
 
     // 2. 필터링
     let filtered = result.data.filter(item => 
-      (item.svcNm || "").includes("성남") || 
-      (item.svcPurposeSummary || "").includes("성남") || 
-      (item.supportTarget || "").includes("성남") || 
-      (item.mgrOrgNm || "").includes("성남")
+      (item.svcNm || "").includes("부산") || 
+      (item.svcPurposeSummary || "").includes("부산") || 
+      (item.supportTarget || "").includes("부산") || 
+      (item.mgrOrgNm || "").includes("부산")
     );
 
     if (filtered.length === 0) {

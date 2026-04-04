@@ -15,7 +15,7 @@ export default function SectionHeader({
   emoji,
 }: SectionHeaderProps) {
   return (
-    <div className="flex items-end justify-between mb-8 group">
+    <div className="flex items-end justify-between mb-8 group gap-6">
       <div>
         <div className="flex items-center gap-2 mb-1">
           {emoji && <span className="text-2xl">{emoji}</span>}
@@ -26,7 +26,7 @@ export default function SectionHeader({
       {viewAllLink && (
         <Link
           href={viewAllLink}
-          className="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center transition-colors px-3 py-1 rounded-full bg-blue-50 hover:bg-blue-100"
+          className="shrink-0 text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center transition-colors px-3 py-1 rounded-full bg-blue-50 hover:bg-blue-100"
         >
           더보기
           <svg
