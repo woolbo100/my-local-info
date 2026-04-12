@@ -25,12 +25,28 @@ export default function InfoCard({
   href,
   type = "place",
 }: InfoCardProps) {
-  const categoryColors: Record<string, string> = {
+  const normalizedCategory = (category || "").trim();
+
+  const categoryColorsByLabel: Record<string, string> = {
+    "축제/행사": "border-red-100 bg-red-50/95 text-red-700",
+    "지원/혜택": "border-emerald-100 bg-emerald-50/95 text-emerald-700",
+    "부산 맛집": "border-amber-100 bg-amber-50/95 text-amber-700",
+    핫플레이스: "border-blue-100 bg-blue-50/95 text-blue-700",
+    "데이트 코스": "border-pink-100 bg-pink-50/95 text-pink-700",
+    블로그: "border-slate-200 bg-slate-100/95 text-slate-700",
+  };
+
+  const categoryColorsByType: Record<string, string> = {
     festival: "border-red-100 bg-red-50/95 text-red-700",
     benefit: "border-emerald-100 bg-emerald-50/95 text-emerald-700",
     place: "border-blue-100 bg-blue-50/95 text-blue-700",
-    blog: "border-amber-100 bg-amber-50/95 text-amber-700",
+    blog: "border-slate-200 bg-slate-100/95 text-slate-700",
   };
+
+  const badgeClass =
+    categoryColorsByLabel[normalizedCategory] ||
+    categoryColorsByType[type] ||
+    categoryColorsByType.place;
 
   return (
     <Link href={href} className="group block h-full">
@@ -67,7 +83,7 @@ export default function InfoCard({
           )}
           {category && (
             <span
-              className={`absolute left-3 top-3 rounded-xl border bg-white/90 px-2.5 py-1 text-[11px] font-bold backdrop-blur-sm ${categoryColors[type] || categoryColors.place}`}
+              className={`absolute left-3 top-3 rounded-xl border bg-white/90 px-2.5 py-1 text-[11px] font-bold backdrop-blur-sm ${badgeClass}`}
             >
               {category}
             </span>

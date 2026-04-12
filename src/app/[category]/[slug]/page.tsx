@@ -119,7 +119,7 @@ export default async function PostPage({ params }: PostPageProps) {
             {getDisplayDate(post)}
           </time>
         </div>
-        <h1 className="mb-6 text-4xl font-black leading-tight tracking-tight text-white md:text-5xl">
+        <h1 className="mb-6 text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl md:text-[3.25rem]">
           {post.title}
         </h1>
         <p className="text-lg leading-relaxed text-slate-200">{post.excerpt}</p>
@@ -177,7 +177,7 @@ export default async function PostPage({ params }: PostPageProps) {
           </section>
         )}
 
-        <article className="prose prose-slate max-w-none prose-lg md:prose-xl prose-headings:font-black prose-a:text-blue-600 prose-img:rounded-3xl prose-pre:rounded-2xl prose-pre:bg-slate-900 prose-pre:p-6">
+        <article className="prose prose-slate max-w-none prose-lg md:prose-xl prose-headings:font-black prose-headings:tracking-tight prose-h1:text-3xl prose-h1:leading-tight sm:prose-h1:text-4xl md:prose-h1:text-[2.6rem] prose-h2:text-[1.55rem] prose-h2:leading-snug sm:prose-h2:text-[1.75rem] md:prose-h2:text-[1.9rem] prose-a:text-blue-600 prose-img:rounded-3xl prose-pre:rounded-2xl prose-pre:bg-slate-900 prose-pre:p-6">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content || ""}</ReactMarkdown>
         </article>
       </div>
