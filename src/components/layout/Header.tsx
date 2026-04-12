@@ -10,7 +10,7 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-2xl">⚓️</span>
+              <span className="text-2xl">🌊</span>
               <span className="text-xl font-black text-blue-600 tracking-tight">
                 {siteConfig.name.split(" ")[0]}
               </span>

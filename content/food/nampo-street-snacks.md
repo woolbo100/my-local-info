@@ -1,7 +1,7 @@
 ---
 title: "남포동 길거리 간식 투어 가이드"
 slug: "nampo-street-snacks"
-category: "길거리 음식"
+category: "food"
 date: "2026-03-10"
 excerpt: "남포동에서 가볍게 즐기기 좋은 간식 메뉴와 이동 순서를 빠르게 정리했습니다."
 tags: ["남포동", "길거리음식", "부평시장"]

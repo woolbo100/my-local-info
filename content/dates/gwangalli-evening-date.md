@@ -1,7 +1,7 @@
 ---
 title: "광안리 저녁 데이트 코스"
 slug: "gwangalli-evening-date"
-category: "데이트 코스"
+category: "dates"
 date: "2026-04-04"
 excerpt: "식사, 산책, 야경까지 자연스럽게 이어지는 광안리 저녁 데이트 동선을 소개합니다."
 tags: ["광안리", "데이트", "야경"]

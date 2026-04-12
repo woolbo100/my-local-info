@@ -1,0 +1,9 @@
+/dates/haeundae-night-date-course /dates/haeundae-date-course 301
+/date-courses/haeundae-night-date-course /dates/haeundae-date-course 301
+/date-course/haeundae-night-date-course /dates/haeundae-date-course 301
+/events /festivals 301
+/events/* /festivals/:splat 301
+/date-courses /dates 301
+/date-courses/* /dates/:splat 301
+/date-course /dates 301
+/date-course/* /dates/:splat 301

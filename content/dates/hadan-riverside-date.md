@@ -1,7 +1,7 @@
 ---
 title: "하단 강변 산책 데이트 코스"
 slug: "hadan-riverside-date"
-category: "데이트 코스"
+category: "dates"
 date: "2026-03-12"
 excerpt: "조용하게 걷고 대화하기 좋은 하단 강변 산책 중심 데이트 코스를 제안합니다."
 tags: ["하단", "산책데이트", "강변"]

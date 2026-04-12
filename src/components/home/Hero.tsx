@@ -25,18 +25,18 @@ export default function Hero() {
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center md:mx-0 md:text-left">
           <div className="mb-7 inline-flex items-center rounded-full bg-blue-300/10 px-3 py-1 text-sm font-semibold leading-6 text-blue-100 ring-1 ring-inset ring-blue-200/25 backdrop-blur-sm">
-            부산 로컬 정보 플랫폼
+            부산 로컬 정보 아카이브
           </div>
           <h1 className="max-w-4xl text-4xl font-black tracking-[-0.02em] text-white sm:text-5xl lg:text-[3.7rem] lg:leading-[1.24]">
-            부산의 축제·행사·혜택·맛집
+            부산의 축제, 행사, 혜택, 맛집
             <br className="hidden lg:block" />
-            <span className="lg:block">핫플레이스·데이트 코스를</span>
-            <span className="lg:block">한눈에</span>
+            <span className="lg:block">핫플레이스와 데이트 코스를</span>
+            <span className="lg:block">한눈에 정리해드릴게요</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-200">
-            부산에서 지금 꼭 알아야 할 축제, 맛집, 데이트 코스를 한눈에 확인할수 있는
+            부산에서 지금 찾고 있는 축제, 맛집, 데이트 코스를 빠르게 확인할 수 있는
             <br className="hidden sm:block" />
-            부산 로컬 콘텐츠 허브입니다.
+            부산 로컬 콘텐츠 아카이브입니다.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4 md:justify-start">
             <Link

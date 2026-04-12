@@ -63,10 +63,7 @@ function HomeSection({ category }: { category: CategoryRoute }) {
 }
 
 export default function Home() {
-  const eventSchemas = ["festivals", "events"]
-    .flatMap((category) =>
-      getLatestPostsByCategory(category as CategoryRoute, 4),
-    )
+  const eventSchemas = getLatestPostsByCategory("festivals", 8)
     .filter((post) => isEventPost(post))
     .map((post) => buildEventJsonLd(post))
     .filter(Boolean);

@@ -2,7 +2,7 @@
 title: "부산 BTS 콘서트 2026 가능성, 일정·티켓·숙소 준비 가이드"
 slug: "busan-bts-concert-guide"
 date: "2026-04-11"
-category: "festival"
+category: "festivals"
 image: "/images/festival/busan-bts-concert-guide.webp"
 thumbnail: "/images/festival/busan-bts-concert-guide.webp"
 excerpt: "부산 BTS 콘서트 2026 개최 가능성과 함께 일정, 티켓 예매 방법, 숙소, 교통까지 현실적인 준비 방법을 정리했습니다."

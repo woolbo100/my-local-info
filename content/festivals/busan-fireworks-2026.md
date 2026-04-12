@@ -2,7 +2,7 @@
 title: "부산 불꽃축제 2026 일정, 명당, 주차 꿀팁 총정리"
 slug: "busan-fireworks-2026"
 date: "2026-04-04"
-category: "festival"
+category: "festivals"
 image: "/images/festival/fireworks.jpg"
 thumbnail: "/images/festival/fireworks.jpg"
 excerpt: "부산 불꽃축제 2026 일정부터 명당, 주차 꿀팁까지 한눈에 정리했습니다."

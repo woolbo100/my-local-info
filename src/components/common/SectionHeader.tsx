@@ -36,7 +36,7 @@ export default function SectionHeader({
       {viewAllLink && (
         <Link
           href={viewAllLink}
-          className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 flex items-center ${buttonClass}`}
+          className={`flex shrink-0 items-center rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 ${buttonClass}`}
         >
           더보기
           <svg
@@ -50,7 +50,7 @@ export default function SectionHeader({
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              d="9 5l7 7-7 7"
+              d="M9 5l7 7-7 7"
             />
           </svg>
         </Link>

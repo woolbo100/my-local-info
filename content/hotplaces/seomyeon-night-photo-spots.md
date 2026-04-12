@@ -1,7 +1,7 @@
 ---
 title: "서면 야간 사진 스팟 모음"
 slug: "seomyeon-night-photo-spots"
-category: "핫플레이스"
+category: "hotplaces"
 date: "2026-04-03"
 excerpt: "네온사인, 골목 감성, 늦은 시간 분위기까지 서면의 야간 촬영 포인트를 모았습니다."
 tags: ["서면", "야경", "사진스팟"]

@@ -1,7 +1,7 @@
 ---
 title: "부산 육아 가정 바우처 혜택 한눈에 보기"
 slug: "busan-childcare-voucher"
-category: "복지 혜택"
+category: "benefits"
 date: "2026-03-26"
 excerpt: "육아 가정이 챙길 수 있는 바우처와 신청 전 알아둘 점을 빠르게 정리했습니다."
 tags: ["육아", "복지", "바우처"]

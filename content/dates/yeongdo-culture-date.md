@@ -1,7 +1,7 @@
 ---
 title: "영도 감성 문화 데이트 코스"
 slug: "yeongdo-culture-date"
-category: "데이트 코스"
+category: "dates"
 date: "2026-03-30"
 excerpt: "전시 공간과 카페, 바다 풍경을 함께 즐길 수 있는 영도 데이트 루트를 정리했습니다."
 tags: ["영도", "감성데이트", "문화공간"]

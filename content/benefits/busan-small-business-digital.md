@@ -1,7 +1,7 @@
 ---
 title: "부산 소상공인 디지털 전환 지원 요약"
 slug: "busan-small-business-digital"
-category: "소상공인 지원"
+category: "benefits"
 date: "2026-02-18"
 excerpt: "온라인 판매와 홍보를 준비하는 부산 소상공인을 위한 디지털 전환 지원 내용을 정리했습니다."
 tags: ["소상공인", "디지털전환", "부산사업"]

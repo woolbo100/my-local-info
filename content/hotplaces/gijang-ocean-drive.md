@@ -1,7 +1,7 @@
 ---
 title: "기장 오션뷰 드라이브 코스 정리"
 slug: "gijang-ocean-drive"
-category: "드라이브"
+category: "hotplaces"
 date: "2026-03-24"
 excerpt: "바다 풍경을 중심으로 기장에서 즐기기 좋은 드라이브와 휴식 포인트를 묶었습니다."
 tags: ["기장", "오션뷰", "드라이브"]

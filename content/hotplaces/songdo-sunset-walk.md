@@ -1,7 +1,7 @@
 ---
 title: "송도 해질녘 산책 코스 추천"
 slug: "songdo-sunset-walk"
-category: "산책 명소"
+category: "hotplaces"
 date: "2026-03-08"
 excerpt: "송도 바다와 노을을 함께 즐기기 좋은 산책 코스와 쉬어 가기 좋은 포인트를 정리했습니다."
 tags: ["송도", "노을", "산책"]

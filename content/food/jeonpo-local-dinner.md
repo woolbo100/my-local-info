@@ -1,7 +1,7 @@
 ---
 title: "전포에서 찾는 로컬 저녁 맛집"
 slug: "jeonpo-local-dinner"
-category: "맛집"
+category: "food"
 date: "2026-03-29"
 excerpt: "전포 카페거리 주변에서 저녁 식사하기 좋은 로컬 맛집 분위기를 정리했습니다."
 tags: ["전포", "저녁맛집", "서면"]

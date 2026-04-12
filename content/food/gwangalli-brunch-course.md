@@ -1,7 +1,7 @@
 ---
 title: "광안리 브런치와 디저트 코스 추천"
 slug: "gwangalli-brunch-course"
-category: "맛집"
+category: "food"
 date: "2026-04-02"
 excerpt: "광안리 바다를 보며 즐기기 좋은 브런치와 디저트 동선을 한 번에 정리했습니다."
 tags: ["광안리", "브런치", "디저트"]
