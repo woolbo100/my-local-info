@@ -39,8 +39,8 @@ export default function RootLayout({
   const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID;
   const isAdsenseEnabled = adsenseId && adsenseId !== "여기에-입력";
 
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
-  const isGaEnabled = gaId && gaId !== "여기에-입력";
+  const gaId = process.env.NEXT_PUBLIC_GA_ID || siteConfig.gaId;
+  const isGaEnabled = gaId && gaId !== "여기에-입력" && gaId !== "나중에_입력";
 
   return (
     <html lang="ko" className={`${inter.variable} h-full antialiased`}>

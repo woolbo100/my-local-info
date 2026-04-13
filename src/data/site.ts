@@ -17,4 +17,5 @@ export const siteConfig = {
     "부산 데이트 코스",
   ],
   author: "Busan Now Team",
+  gaId: "G-DS91JGJLMX",
 };
