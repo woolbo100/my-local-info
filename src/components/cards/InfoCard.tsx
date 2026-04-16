@@ -27,6 +27,8 @@ export default function InfoCard({
 }: InfoCardProps) {
   const normalizedCategory = (category || "").trim();
   const visibleTags = (tags || []).slice(0, 3);
+  const secondaryMeta = (location || "").trim() || visibleTags.join(" · ") || description;
+  const secondaryIcon = (location || "").trim() ? "📍" : "🏷️";
 
   const categoryColorsByLabel: Record<string, string> = {
     "축제/행사": "border-red-100 bg-red-50/95 text-red-700",
@@ -105,14 +107,9 @@ export default function InfoCard({
               {date || "날짜 정보"}
             </div>
 
-            <div
-              className={`flex min-h-[1.25rem] items-center text-xs text-slate-500 ${
-                location ? "" : "invisible"
-              }`}
-              aria-hidden={!location}
-            >
-              <span className="mr-1.5">📍</span>
-              {location || "위치 정보"}
+            <div className="flex min-h-[1.25rem] items-center text-xs text-slate-500">
+              <span className="mr-1.5">{secondaryIcon}</span>
+              <span className="line-clamp-1">{secondaryMeta}</span>
             </div>
 
             <div className="min-h-[3.25rem] pt-2">
