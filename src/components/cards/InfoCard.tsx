@@ -26,6 +26,7 @@ export default function InfoCard({
   type = "place",
 }: InfoCardProps) {
   const normalizedCategory = (category || "").trim();
+  const visibleTags = (tags || []).slice(0, 3);
 
   const categoryColorsByLabel: Record<string, string> = {
     "축제/행사": "border-red-100 bg-red-50/95 text-red-700",
@@ -91,57 +92,75 @@ export default function InfoCard({
         </div>
 
         <div className="flex flex-grow flex-col p-5">
-          <h3 className="mb-2 line-clamp-1 text-lg font-bold text-slate-900 transition-colors group-hover:text-blue-700">
+          <h3 className="mb-2 min-h-[3.5rem] line-clamp-2 text-lg font-bold leading-snug text-slate-900 transition-colors group-hover:text-blue-700">
             {title}
           </h3>
-          <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-slate-600">
+          <p className="mb-4 min-h-[3rem] line-clamp-2 text-sm leading-relaxed text-slate-600">
             {description}
           </p>
 
           <div className="space-y-2">
-            {date && (
-              <div className="flex items-center text-xs text-slate-500">
-                <span className="mr-1.5">📅</span>
-                {date}
-              </div>
-            )}
-            {location && (
-              <div className="flex items-center text-xs text-slate-500">
-                <span className="mr-1.5">📍</span>
-                {location}
-              </div>
-            )}
-            {tags && tags.length > 0 && (
-              <div className="flex flex-wrap gap-1.5 pt-2">
-                {tags.slice(0, 3).map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] text-slate-500"
-                  >
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            )}
-
-            <div className="mt-auto flex justify-end border-t border-slate-100 pt-4">
-              <span className="flex items-center text-xs font-bold text-blue-600 transition-all group-hover:translate-x-1 group-hover:text-blue-700">
-                자세히 보기
-                <svg
-                  className="ml-1 h-3 w-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </span>
+            <div className={`flex min-h-[1.25rem] items-center text-xs text-slate-500 ${date ? "" : "invisible"}`}>
+              <span className="mr-1.5">📅</span>
+              {date || "날짜 정보"}
             </div>
+
+            <div
+              className={`flex min-h-[1.25rem] items-center text-xs text-slate-500 ${
+                location ? "" : "invisible"
+              }`}
+              aria-hidden={!location}
+            >
+              <span className="mr-1.5">📍</span>
+              {location || "위치 정보"}
+            </div>
+
+            <div className="min-h-[3.25rem] pt-2">
+              {visibleTags.length > 0 ? (
+                <div className="flex flex-wrap gap-1.5">
+                  {visibleTags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] text-slate-500"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex flex-wrap gap-1.5 invisible" aria-hidden="true">
+                  <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] text-slate-500">
+                    #태그1
+                  </span>
+                  <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] text-slate-500">
+                    #태그2
+                  </span>
+                  <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] text-slate-500">
+                    #태그3
+                  </span>
+                </div>
+              )}
+            </div>
+
+          </div>
+
+          <div className="mt-auto flex justify-end border-t border-slate-100 pt-4">
+            <span className="flex items-center text-xs font-bold text-blue-600 transition-all group-hover:translate-x-1 group-hover:text-blue-700">
+              자세히 보기
+              <svg
+                className="ml-1 h-3 w-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </span>
           </div>
         </div>
       </article>
