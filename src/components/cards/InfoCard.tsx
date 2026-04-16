@@ -92,30 +92,30 @@ export default function InfoCard({
         </div>
 
         <div className="flex flex-grow flex-col p-5">
-          <h3 className="mb-3 min-h-[4rem] line-clamp-2 text-lg font-bold leading-[1.35] text-slate-900 transition-colors group-hover:text-blue-700">
+          <h3 className="mb-2 min-h-[3.5rem] line-clamp-2 text-lg font-bold leading-snug text-slate-900 transition-colors group-hover:text-blue-700">
             {title}
           </h3>
-          <p className="mb-5 min-h-[4.5rem] line-clamp-3 text-sm leading-relaxed text-slate-600">
+          <p className="mb-4 min-h-[3rem] line-clamp-2 text-sm leading-relaxed text-slate-600">
             {description}
           </p>
 
           <div className="space-y-2">
-            <div className={`flex min-h-[1.35rem] items-center text-xs text-slate-500 ${date ? "" : "invisible"}`}>
+            <div className={`flex min-h-[1.25rem] items-center text-xs text-slate-500 ${date ? "" : "invisible"}`}>
               <span className="mr-1.5">📅</span>
               {date || "날짜 정보"}
             </div>
 
             <div
-              className={`flex min-h-[2.8rem] items-start text-xs leading-5 text-slate-500 ${
+              className={`flex min-h-[1.25rem] items-center text-xs text-slate-500 ${
                 location ? "" : "invisible"
               }`}
               aria-hidden={!location}
             >
-              <span className="mr-1.5 mt-0.5">📍</span>
-              <span className="line-clamp-2">{location || "위치 정보"}</span>
+              <span className="mr-1.5">📍</span>
+              {location || "위치 정보"}
             </div>
 
-            <div className="min-h-[3.75rem] pt-2">
+            <div className="min-h-[3.25rem] pt-2">
               {visibleTags.length > 0 ? (
                 <div className="flex flex-wrap gap-1.5">
                   {visibleTags.map((tag) => (
@@ -141,7 +141,6 @@ export default function InfoCard({
                 </div>
               )}
             </div>
-
           </div>
 
           <div className="mt-auto flex justify-end border-t border-slate-100 pt-4">
