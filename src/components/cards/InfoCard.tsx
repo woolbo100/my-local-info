@@ -98,7 +98,7 @@ export default function InfoCard({
             {description}
           </p>
 
-          <div className="mt-auto space-y-2">
+          <div className="space-y-2">
             {date && (
               <div className="flex items-center text-xs text-slate-500">
                 <span className="mr-1.5">📅</span>
@@ -124,7 +124,7 @@ export default function InfoCard({
               </div>
             )}
 
-            <div className="mt-2 flex justify-end border-t border-slate-100 pt-4">
+            <div className="mt-auto flex justify-end border-t border-slate-100 pt-4">
               <span className="flex items-center text-xs font-bold text-blue-600 transition-all group-hover:translate-x-1 group-hover:text-blue-700">
                 자세히 보기
                 <svg
