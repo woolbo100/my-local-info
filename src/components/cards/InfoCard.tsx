@@ -94,7 +94,7 @@ export default function InfoCard({
         </div>
 
         <div className="flex flex-grow flex-col p-5">
-          <h3 className="mb-2 min-h-[3.5rem] overflow-hidden text-lg font-bold leading-snug text-slate-900 transition-colors group-hover:text-blue-700 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] break-words">
+          <h3 className="mb-2 h-[3.1rem] max-h-[3.1rem] overflow-hidden text-lg font-bold leading-snug text-slate-900 transition-colors group-hover:text-blue-700 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] break-words">
             {title}
           </h3>
           <p className="mb-4 min-h-[3rem] line-clamp-2 text-sm leading-relaxed text-slate-600">
