@@ -58,8 +58,16 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Validate static SEO output
+        run: npm run verify:seo
+
       - name: Deploy to Cloudflare Pages
         run: npx wrangler pages deploy out --project-name=my-local-info --branch=main
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Verify live routes and redirects
+        run: npm run verify:live
+        env:
+          BASE_URL: https://busan-now.com
