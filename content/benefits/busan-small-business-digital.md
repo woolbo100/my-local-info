@@ -4,6 +4,12 @@ date: 2026-04-21
 category: benefits
 image: /images/benefits/busan-idea-contest.webp
 excerpt: 부산 지역문제 해결 아이디어 경진대회 신청 방법, 참여 조건, 개인 vs 팀 선택 기준까지 실제 고민 기준으로 정리했습니다.
+tags:
+  - 부산 아이디어 경진대회
+  - 부산 지역문제 해결
+  - 부산 공모전
+  - 부산 청년 프로그램
+  - 아이디어 대회 준비
 ---
 
 # 부산 지역문제 해결 아이디어 경진대회 참여 고민된다면
