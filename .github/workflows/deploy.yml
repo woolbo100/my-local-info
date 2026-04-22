@@ -5,8 +5,12 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 22 * * *'  # 한국시간 오전 7시 (UTC 22시)
+    - cron: "0 22 * * *"
   workflow_dispatch:
+
+concurrency:
+  group: pages-deploy-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -24,7 +28,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -43,6 +47,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
       - name: Commit & Push changes (Schedule/Manual only)
+        id: commit_changes
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           git config --local user.email "action@github.com"
@@ -51,23 +56,29 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "자동 업데이트: 공공데이터 수집 및 블로그 글 생성"
             git push origin main
+            echo "pushed=true" >> "$GITHUB_OUTPUT"
           else
             echo "No changes to commit"
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Build
+        if: github.event_name == 'push' || steps.commit_changes.outputs.pushed != 'true'
         run: npm run build
 
       - name: Validate static SEO output
+        if: github.event_name == 'push' || steps.commit_changes.outputs.pushed != 'true'
         run: npm run verify:seo
 
       - name: Deploy to Cloudflare Pages
+        if: github.event_name == 'push' || steps.commit_changes.outputs.pushed != 'true'
         run: npx wrangler pages deploy out --project-name=my-local-info --branch=main
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: Verify live routes and redirects
+        if: github.event_name == 'push' || steps.commit_changes.outputs.pushed != 'true'
         run: npm run verify:live
         env:
           BASE_URL: https://busan-now.com
