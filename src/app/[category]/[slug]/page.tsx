@@ -29,6 +29,28 @@ interface PostPageProps {
   }>;
 }
 
+function normalizeImageSource(pathOrUrl?: string) {
+  if (!pathOrUrl) {
+    return "";
+  }
+
+  const normalized = pathOrUrl.trim();
+  if (!normalized) {
+    return "";
+  }
+
+  if (normalized.startsWith("http://") || normalized.startsWith("https://")) {
+    try {
+      const url = new URL(normalized);
+      return decodeURIComponent(url.pathname).replace(/\/+$/, "");
+    } catch {
+      return normalized.replace(/\/+$/, "");
+    }
+  }
+
+  return decodeURIComponent(normalized).replace(/\/+$/, "");
+}
+
 function toAbsoluteUrl(pathOrUrl?: string) {
   if (!pathOrUrl) {
     return undefined;
@@ -95,6 +117,8 @@ export default async function PostPage({ params }: PostPageProps) {
   const relatedPosts = getRelatedPosts(typedCategory, slug, 3);
   const eventJsonLd = buildEventJsonLd(post);
   const imageUrl = toAbsoluteUrl(post.thumbnail || post.image);
+  const heroImageSource = normalizeImageSource(post.thumbnail || post.image);
+  let skippedDuplicateHeroImage = false;
 
   return (
     <DarkOceanShell className="max-w-5xl px-4 py-16 text-slate-100 sm:px-6 lg:px-8">
@@ -178,7 +202,27 @@ export default async function PostPage({ params }: PostPageProps) {
         )}
 
         <article className="prose prose-slate max-w-none prose-lg md:prose-xl prose-headings:font-black prose-headings:tracking-tight prose-h1:text-3xl prose-h1:leading-tight sm:prose-h1:text-4xl md:prose-h1:text-[2.6rem] prose-h2:text-[1.55rem] prose-h2:leading-snug sm:prose-h2:text-[1.75rem] md:prose-h2:text-[1.9rem] prose-a:text-blue-600 prose-img:rounded-3xl prose-pre:rounded-2xl prose-pre:bg-slate-900 prose-pre:p-6">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content || ""}</ReactMarkdown>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              img: ({ src = "", alt = "" }) => {
+                const normalizedSource = normalizeImageSource(src);
+
+                if (
+                  !skippedDuplicateHeroImage &&
+                  heroImageSource &&
+                  normalizedSource === heroImageSource
+                ) {
+                  skippedDuplicateHeroImage = true;
+                  return null;
+                }
+
+                return <img src={src} alt={alt} />;
+              },
+            }}
+          >
+            {post.content || ""}
+          </ReactMarkdown>
         </article>
       </div>
 
