@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import Script from "next/script";
 import { siteConfig } from "@/data/site";
 
 const inter = Inter({
@@ -36,24 +36,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID;
-  const isAdsenseEnabled = adsenseId && adsenseId !== "여기에-입력";
-
   const gaId = process.env.NEXT_PUBLIC_GA_ID || siteConfig.gaId;
-  const isGaEnabled = gaId && gaId !== "여기에-입력" && gaId !== "나중에_입력";
+  const isGaEnabled = gaId && gaId !== "?ш린???낅젰" && gaId !== "?섏쨷???낅젰";
 
   return (
     <html lang="ko" className={`${inter.variable} h-full antialiased`}>
       <head>
         <meta name="google-site-verification" content="W52msq-ecdWlgVyvAoZHm45aFZcssKcAuVxPCUxiEQk" />
-        {isAdsenseEnabled && (
-          <Script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
-            crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
-        )}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6109659306037375"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         {isGaEnabled && (
           <>
             <Script
