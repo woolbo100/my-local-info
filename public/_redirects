@@ -13,3 +13,5 @@
 /date-course /dates 301
 /date-course/ /dates/ 301
 /date-course/* /dates/:splat 301
+/blog/busan-one-day-course-guide /blog/busan-one-day-course 301
+/blog/busan-one-day-course-guide/ /blog/busan-one-day-course/ 301
