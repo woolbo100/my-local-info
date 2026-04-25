@@ -5,6 +5,7 @@ category: benefits
 image: /images/benefits/busan-multi-child-benefits.webp
 excerpt: 부산 다자녀 혜택 종류, 신청 방법, 실제 체감 포인트까지 한 번에 정리했습니다. 카드 할인부터 교육비, 공공요금 감면까지 놓치기 쉬운 혜택을 확인해보세요.
 slug: busan-multi-child-benefits
+location: 부산시·구군 복지 안내, 정부24·복지로 및 행정복지센터 확인
 tags:
   - 부산 다자녀 혜택
   - 부산 다자녀 카드

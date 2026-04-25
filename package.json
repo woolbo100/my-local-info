@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "postbuild": "next-sitemap",
+    "postbuild": "next-sitemap && node scripts/finalize-static-output.js",
     "verify:seo": "node scripts/validate-static-seo.js",
     "verify:live": "node scripts/check-live-routes.js"
   },

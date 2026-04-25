@@ -43,6 +43,7 @@ export default function RootLayout({
     <html lang="ko" className={`${inter.variable} h-full antialiased`}>
       <head>
         <meta name="google-site-verification" content="W52msq-ecdWlgVyvAoZHm45aFZcssKcAuVxPCUxiEQk" />
+        <meta name="agd-partner-manual-verification" />
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6109659306037375"

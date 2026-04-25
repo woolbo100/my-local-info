@@ -5,6 +5,7 @@ category: food
 date: 2026-04-16
 image: /images/food/gwangalli-brunch-dessert-course.webp
 excerpt: 광안리 브런치 맛집과 디저트 카페를 코스로 정리했습니다. 데이트, 친구 모임 모두 실패 없는 동선과 현실 팁까지 확인하세요.
+location: 광안리 해변, 민락동 카페거리, 밀락더마켓 일대
 tags:
   - 광안리 브런치
   - 광안리 디저트

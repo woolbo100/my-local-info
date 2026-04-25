@@ -5,6 +5,7 @@ category: benefits
 image: /images/benefits/busan-birth-support.webp
 excerpt: 부산 출산 지원금 종류와 실제 받을 수 있는 금액을 현실적으로 정리했습니다. 첫만남이용권, 부모급여, 아동수당까지 놓치면 손해 보는 핵심 혜택을 확인하세요.
 slug: busan-birth-support
+location: 부산시 출산·보육 안내, 정부24·복지로 및 거주지 행정복지센터 확인
 tags:
   - 부산 출산 지원금
   - 첫만남이용권
