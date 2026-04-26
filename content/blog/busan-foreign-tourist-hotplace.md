@@ -3,13 +3,15 @@ title: "외국인 관광객 500만 시대, 부산 여행 처음이라면 꼭 가
 slug: "busan-foreign-tourist-hotplace"
 date: "2026-04-26"
 category: "blog"
-image: "/images/blog/busan-tour-trend.webp"
-thumbnail: "/images/blog/busan-tour-trend.webp"
+image: "/images/blog/busan-foreign-tourist-hotplace.png"
+thumbnail: "/images/blog/busan-foreign-tourist-hotplace.png"
 excerpt: "부산 외국인 관광객 증가 흐름과 함께 처음 부산 여행에서 많이 고르는 대표 코스를 정리했습니다. 해운대, 남포동, 감천문화마을 중 어떤 선택이 잘 맞는지 현실적으로 확인해보세요."
 tags: ["부산 외국인 관광객", "부산 여행 추천", "해운대", "남포동", "감천문화마을"]
 ---
 
 # 외국인 관광객 500만 시대, 부산 여행 처음이라면 꼭 가볼 곳 정리
+
+![부산 여행 대표 명소](/images/blog/busan-foreign-tourist-hotplace.png)
 
 부산에 한동안 안 갔다가 다시 가보면 분위기가 꽤 다르게 느껴질 때가 있습니다. 해운대나 광안리 쪽을 걷다 보면 한국어보다 외국어가 더 또렷하게 들리는 순간도 생각보다 자주 나옵니다. 그래서 처음 부산 여행을 준비하는 사람이라면 이런 질문이 자연스럽습니다. 지금 부산에서 어디를 먼저 가야 실패가 적을까, 그리고 왜 이렇게 부산이 다시 주목받고 있을까.
 
