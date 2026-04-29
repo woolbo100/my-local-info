@@ -5,6 +5,11 @@ date: 2026-04-29
 category: food
 image: /images/food/gwangalli-tonshow-main.webp
 excerpt: 부산 광안리 맛집으로 자주 언급되는 톤쇼우 광안점의 메뉴 선택, 웨이팅 시간대, 어떤 상황에 잘 맞는지까지 실제 방문 기준으로 현실적으로 정리했습니다.
+tags:
+  - 광안리 맛집
+  - 톤쇼우
+  - 광안리 돈카츠
+location: 부산 수영구 광안동
 ---
 
 # 부산 광안리 맛집 톤쇼우 광안점 후기
