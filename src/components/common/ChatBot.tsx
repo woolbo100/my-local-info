@@ -166,7 +166,7 @@ export default function ChatBot() {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="궁금한 내용을 입력하세요..."
-              className="flex-1 text-sm p-3 rounded-xl border border-gray-200 focus:outline-none focus:border-blue-500 transition-all"
+              className="flex-1 text-sm p-3 rounded-xl border border-gray-200 focus:outline-none focus:border-blue-500 transition-all text-gray-900"
             />
             <button
               type="submit"
