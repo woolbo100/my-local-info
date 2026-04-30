@@ -13,6 +13,8 @@ export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([
     { role: 'bot', content: '안녕하세요! 부산 로컬 정보 가이드입니다. 무엇을 도와드릴까요?' }
   ]);
+  const [inputValue, setInputValue] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -23,22 +25,49 @@ export default function ChatBot() {
     if (isOpen) {
       scrollToBottom();
     }
-  }, [messages, isOpen]);
+  }, [messages, isOpen, isLoading]);
 
   const handleQuestionClick = (question: string, answer: string) => {
-    // 사용자가 질문을 클릭하면 메시지 추가
     setMessages((prev) => [
       ...prev,
       { role: 'user', content: question }
     ]);
 
-    // 약간의 지연 후 봇의 답변 추가 (실제 대화 느낌)
     setTimeout(() => {
       setMessages((prev) => [
         ...prev,
         { role: 'bot', content: answer }
       ]);
     }, 500);
+  };
+
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inputValue.trim() || isLoading) return;
+
+    const userMessage = inputValue.trim();
+    setInputValue('');
+    setMessages((prev) => [...prev, { role: 'user', content: userMessage }]);
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: userMessage }),
+      });
+
+      const data = await response.json();
+      if (data.answer) {
+        setMessages((prev) => [...prev, { role: 'bot', content: data.answer }]);
+      } else {
+        setMessages((prev) => [...prev, { role: 'bot', content: '죄송합니다. 답변을 가져오지 못했습니다.' }]);
+      }
+    } catch (error) {
+      setMessages((prev) => [...prev, { role: 'bot', content: '연결 오류가 발생했습니다. 잠시 후 다시 시도해주세요.' }]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -54,7 +83,7 @@ export default function ChatBot() {
           </svg>
         ) : (
           <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 group-hover:rotate-12 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2-2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
           </svg>
         )}
       </button>
@@ -63,7 +92,7 @@ export default function ChatBot() {
       <div 
         className={`fixed z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] 
           ${isOpen ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95 pointer-events-none'}
-          inset-0 md:inset-auto md:bottom-24 md:right-6 md:w-[360px] md:h-[600px] max-h-[100vh] md:max-h-[80vh]
+          inset-0 md:inset-auto md:bottom-24 md:right-6 md:w-[360px] md:h-[650px] max-h-[100vh] md:max-h-[85vh]
           bg-white shadow-2xl md:rounded-2xl flex flex-col overflow-hidden border border-gray-100`}
       >
         {/* 헤더 */}
@@ -79,15 +108,10 @@ export default function ChatBot() {
             </div>
             <div>
               <h3 className="font-bold text-base leading-tight">AI 상담원</h3>
-              <p className="text-xs text-blue-100 flex items-center gap-1">
-                온라인
-              </p>
+              <p className="text-xs text-blue-100 flex items-center gap-1">온라인</p>
             </div>
           </div>
-          <button 
-            onClick={() => setIsOpen(false)} 
-            className="md:hidden p-2 hover:bg-white/10 rounded-full transition-colors"
-          >
+          <button onClick={() => setIsOpen(false)} className="md:hidden p-2 hover:bg-white/10 rounded-full transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -107,23 +131,53 @@ export default function ChatBot() {
               </div>
             </div>
           ))}
+          {isLoading && (
+            <div className="flex justify-start">
+              <div className="bg-white text-gray-800 shadow-sm border border-gray-100 rounded-2xl rounded-tl-none p-3 px-4 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"></span>
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:0.2s]"></span>
+                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:0.4s]"></span>
+              </div>
+            </div>
+          )}
           <div ref={messagesEndRef} />
         </div>
 
-        {/* 질문 버튼 영역 */}
-        <div className="p-4 bg-white border-t border-gray-100 shrink-0">
-          <p className="text-[11px] text-gray-400 font-medium mb-3 uppercase tracking-wider">자주 묻는 질문</p>
-          <div className="flex flex-col gap-2 max-h-[180px] overflow-y-auto pr-1">
-            {chatData.map((item, idx) => (
-              <button
-                key={idx}
-                onClick={() => handleQuestionClick(item.question, item.answer)}
-                className="text-left text-xs p-3 rounded-xl border border-gray-200 hover:border-blue-400 hover:bg-blue-50 transition-all text-gray-700 font-medium hover:text-blue-700 active:scale-[0.98]"
-              >
-                {item.question}
-              </button>
-            ))}
+        {/* 푸터 영역 (질문 버튼 + 입력창) */}
+        <div className="bg-white border-t border-gray-100 shrink-0">
+          <div className="p-4 pb-2">
+            <p className="text-[11px] text-gray-400 font-medium mb-2 uppercase tracking-wider">자주 묻는 질문</p>
+            <div className="flex flex-col gap-1.5 max-h-[120px] overflow-y-auto pr-1">
+              {chatData.map((item, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleQuestionClick(item.question, item.answer)}
+                  className="text-left text-[11px] p-2 px-3 rounded-lg border border-gray-100 hover:border-blue-300 hover:bg-blue-50 transition-all text-gray-600"
+                >
+                  {item.question}
+                </button>
+              ))}
+            </div>
           </div>
+
+          <form onSubmit={handleSendMessage} className="p-4 pt-0 flex gap-2">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="궁금한 내용을 입력하세요..."
+              className="flex-1 text-sm p-3 rounded-xl border border-gray-200 focus:outline-none focus:border-blue-500 transition-all"
+            />
+            <button
+              type="submit"
+              disabled={!inputValue.trim() || isLoading}
+              className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white p-3 rounded-xl transition-all"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+            </button>
+          </form>
         </div>
       </div>
     </>
