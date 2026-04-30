@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import ChatBot from "@/components/common/ChatBot";
 import { siteConfig } from "@/data/site";
 
 const inter = Inter({
@@ -72,6 +73,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />
+        <ChatBot />
 
         <script
           type="application/ld+json"
