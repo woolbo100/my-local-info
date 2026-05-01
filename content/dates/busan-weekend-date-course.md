@@ -5,6 +5,12 @@ date: 2026-05-01
 category: dates
 image: /images/dates/busan-weekend-date-course-thumbnail.webp
 excerpt: 부산 주말 당일치기 데이트코스를 찾는다면 분위기, 이동 동선, 야경까지 연인 기준으로 고르기 쉽게 정리한 하루 코스 가이드입니다.
+tags:
+  - 부산 주말 데이트
+  - 부산 당일치기 데이트
+  - 부산 데이트코스
+  - 광안리 데이트
+  - 기장 데이트
 ---
 
 ![부산 주말 당일치기 데이트코스 썸네일](/images/dates/busan-weekend-date-course-thumbnail.webp)
