@@ -17,6 +17,7 @@ export interface ContentPost {
   categoryLabel: string;
   date: string;
   excerpt: string;
+  hideExcerpt: boolean;
   thumbnail: string;
   tags: string[];
   content: string;
@@ -103,6 +104,7 @@ function mapFileToPost(category: CategoryRoute, fullPath: string): ContentPost {
     categoryLabel: CATEGORY_CONFIG[category].label,
     date: normalizeDate(data.date),
     excerpt,
+    hideExcerpt: data.hideExcerpt === true,
     thumbnail,
     tags,
     content: matterResult.content.trim(),

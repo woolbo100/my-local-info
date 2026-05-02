@@ -146,7 +146,9 @@ export default async function PostPage({ params }: PostPageProps) {
         <h1 className="mb-6 text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl md:text-[3.25rem]">
           {post.title}
         </h1>
-        <p className="text-lg leading-relaxed text-slate-200">{post.excerpt}</p>
+        {!post.hideExcerpt && (
+          <p className="text-lg leading-relaxed text-slate-200">{post.excerpt}</p>
+        )}
         {post.tags.length > 0 && (
           <div className="mt-6 flex flex-wrap gap-2">
             {post.tags.map((tag) => (
