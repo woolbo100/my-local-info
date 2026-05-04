@@ -4,6 +4,10 @@ date: 2026-05-04
 category: festivals
 image: /images/festivals/busan-may-festivals-guide.webp
 excerpt: 2026년 5월 부산 대표 축제인 해운대 모래축제와 부산 연등축제의 일정, 분위기, 추천 방문 시간, 이동 팁을 현실적으로 비교해 정리했습니다.
+tags:
+  - 해운대 모래축제
+  - 부산 연등축제
+  - 부산 5월 축제
 ---
 
 # 해운대 모래축제와 부산 연등축제 2026년 5월 일정 비교 가이드
