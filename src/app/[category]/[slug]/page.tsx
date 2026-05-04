@@ -81,17 +81,18 @@ export async function generateMetadata({
   }
 
   const imageUrl = toAbsoluteUrl(post.thumbnail || post.image);
+  const seoDescription = post.metaDescription || post.excerpt;
 
   return {
     title: `${post.title} | ${siteConfig.name}`,
-    description: post.excerpt,
+    description: seoDescription,
     keywords: post.tags,
     alternates: {
       canonical: `${siteConfig.url}/${category}/${slug}`,
     },
     openGraph: {
       title: post.title,
-      description: post.excerpt,
+      description: seoDescription,
       url: `${siteConfig.url}/${category}/${slug}`,
       siteName: siteConfig.name,
       type: "article",
@@ -118,6 +119,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const eventJsonLd = buildEventJsonLd(post);
   const imageUrl = toAbsoluteUrl(post.thumbnail || post.image);
   const heroImageSource = normalizeImageSource(post.thumbnail || post.image);
+  const seoDescription = post.metaDescription || post.excerpt;
   let skippedDuplicateHeroImage = false;
 
   return (
@@ -262,7 +264,7 @@ export default async function PostPage({ params }: PostPageProps) {
             "@context": "https://schema.org",
             "@type": "Article",
             headline: post.title,
-            description: post.excerpt,
+            description: seoDescription,
             datePublished: post.date,
             image: imageUrl ? [imageUrl] : undefined,
             author: {

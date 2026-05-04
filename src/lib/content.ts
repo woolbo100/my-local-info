@@ -17,6 +17,7 @@ export interface ContentPost {
   categoryLabel: string;
   date: string;
   excerpt: string;
+  metaDescription?: string;
   hideExcerpt: boolean;
   thumbnail: string;
   tags: string[];
@@ -94,6 +95,7 @@ function mapFileToPost(category: CategoryRoute, fullPath: string): ContentPost {
   const slug = String(data.slug || fallbackSlug).trim() || fallbackSlug;
   const title = String(data.title || slug).trim() || slug;
   const excerpt = String(data.excerpt || data.summary || "").trim() || "곧 업데이트 예정입니다.";
+  const metaDescription = String(data.metaDescription || "").trim() || undefined;
   const thumbnail = resolveThumbnail(data.thumbnail || data.image);
   const tags = Array.isArray(data.tags) ? data.tags.map((tag) => String(tag)) : [];
 
@@ -104,6 +106,7 @@ function mapFileToPost(category: CategoryRoute, fullPath: string): ContentPost {
     categoryLabel: CATEGORY_CONFIG[category].label,
     date: normalizeDate(data.date),
     excerpt,
+    metaDescription,
     hideExcerpt: data.hideExcerpt === true,
     thumbnail,
     tags,
