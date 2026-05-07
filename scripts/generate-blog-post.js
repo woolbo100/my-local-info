@@ -88,6 +88,7 @@ isFree: ${isFree}
 
 추가 규칙:
 - 제목은 그대로 frontmatter의 title에 넣어.
+- tags는 반드시 3개 이상 넣어. 비워두지 마.
 - 시작일/종료일/위치/이미지/무료 여부는 반드시 frontmatter에 채워.
 - 이벤트성 글이 아니어도 입력값이 있으면 그대로 유지해.
 - 마지막 줄에는 반드시 FILENAME: ${today}-keyword 형식으로 파일명 후보를 적어.

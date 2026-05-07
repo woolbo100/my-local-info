@@ -4,6 +4,7 @@ date: 2026-05-07
 category: blog
 image: /images/blog/busan-family-hotel-staycation-best5.webp
 excerpt: 5월 가족 호캉스 부산 호텔 추천 BEST 5를 기준으로 아이와 함께 쉬기 좋은 부산 호텔을 위치, 수영장, 조식, 이동 편의성까지 현실적으로 비교했습니다.
+tags: ["부산 가족 호캉스", "부산 호텔 추천", "해운대 호텔", "기장 호텔", "아이와 부산 여행"]
 ---
 
 # 5월 가족 호캉스 부산 호텔 추천 BEST 5

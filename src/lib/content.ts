@@ -31,6 +31,37 @@ export interface ContentPost {
   isFree?: boolean | null;
 }
 
+function buildFallbackTags(category: CategoryRoute, title: string, slug: string): string[] {
+  const categoryDefaults: Record<CategoryRoute, string[]> = {
+    festivals: ["부산 축제", "부산 행사", "부산 가볼만한곳"],
+    benefits: ["부산 지원금", "부산 혜택", "부산 생활정보"],
+    food: ["부산 맛집", "부산 로컬맛집", "부산 먹거리"],
+    hotplaces: ["부산 핫플", "부산 여행지", "부산 가볼만한곳"],
+    dates: ["부산 데이트", "부산 데이트 코스", "부산 나들이"],
+    blog: ["부산 블로그", "부산 여행", "부산 로컬정보"],
+  };
+
+  const titleParts = title
+    .split(/[|,]/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+  const slugParts = slug
+    .split("-")
+    .map((part) => part.trim())
+    .filter((part) => part && !/^\d+$/.test(part) && part !== category);
+
+  const rawTags = [...titleParts, ...categoryDefaults[category], ...slugParts];
+  const deduped = Array.from(
+    new Set(
+      rawTags
+        .map((tag) => String(tag).trim())
+        .filter((tag) => tag.length >= 2)
+    )
+  );
+
+  return deduped.slice(0, 5);
+}
+
 function normalizeDate(value: unknown): string {
   if (value instanceof Date) {
     return value.toISOString().split("T")[0];
@@ -97,7 +128,10 @@ function mapFileToPost(category: CategoryRoute, fullPath: string): ContentPost {
   const excerpt = String(data.excerpt || data.summary || "").trim() || "곧 업데이트 예정입니다.";
   const metaDescription = String(data.metaDescription || "").trim() || undefined;
   const thumbnail = resolveThumbnail(data.thumbnail || data.image);
-  const tags = Array.isArray(data.tags) ? data.tags.map((tag) => String(tag)) : [];
+  const parsedTags = Array.isArray(data.tags)
+    ? data.tags.map((tag) => String(tag).trim()).filter(Boolean)
+    : [];
+  const tags = parsedTags.length > 0 ? parsedTags : buildFallbackTags(category, title, slug);
 
   return {
     title,
