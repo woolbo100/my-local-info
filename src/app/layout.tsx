@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ChatBot from "@/components/common/ChatBot";
 import { siteConfig } from "@/data/site";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -41,7 +35,7 @@ export default function RootLayout({
   const isGaEnabled = gaId && gaId !== "?ш린???낅젰" && gaId !== "?섏쨷???낅젰";
 
   return (
-    <html lang="ko" className={`${inter.variable} h-full antialiased`}>
+    <html lang="ko" className="h-full antialiased">
       <head>
         <meta name="google-site-verification" content="W52msq-ecdWlgVyvAoZHm45aFZcssKcAuVxPCUxiEQk" />
         <meta name="agd-partner-manual-verification" />

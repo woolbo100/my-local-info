@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { CATEGORY_ORDER, getCategoryConfig } from "@/lib/content-config";
 
 const colorMap: Record<string, string> = {
@@ -21,6 +22,7 @@ export default function CategoryGrid() {
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
           {CATEGORY_ORDER.map((category) => {
             const config = getCategoryConfig(category);
+            const iconSrc = `/images/icon/${config.route}.png`;
 
             return (
               <Link
@@ -28,7 +30,13 @@ export default function CategoryGrid() {
                 href={`/${config.route}`}
                 className={`flex flex-col items-center justify-center rounded-[22px] border border-white/70 bg-white/72 p-6 backdrop-blur-sm transition-all duration-200 hover:-translate-y-1 hover:border-white hover:shadow-[0_14px_28px_rgba(15,23,42,0.10)] active:scale-[0.99] ${colorMap[config.route]}`}
               >
-                <span className="mb-3 text-3xl">{config.emoji}</span>
+                <Image
+                  src={iconSrc}
+                  alt={config.label}
+                  width={48}
+                  height={48}
+                  className="mb-3 h-12 w-12 object-contain"
+                />
                 <span className="text-center text-sm font-bold text-slate-700">{config.label}</span>
               </Link>
             );
