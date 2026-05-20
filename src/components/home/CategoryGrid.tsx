@@ -33,9 +33,9 @@ export default function CategoryGrid() {
                 <Image
                   src={iconSrc}
                   alt={config.label}
-                  width={48}
-                  height={48}
-                  className="mb-3 h-12 w-12 object-contain"
+                  width={72}
+                  height={72}
+                  className="mb-3 h-16 w-16 object-contain sm:h-[4.5rem] sm:w-[4.5rem]"
                 />
                 <span className="text-center text-sm font-bold text-slate-700">{config.label}</span>
               </Link>

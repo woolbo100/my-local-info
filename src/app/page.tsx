@@ -26,12 +26,14 @@ function PlaceholderCard({ label }: { label: string }) {
 function HomeSection({ category }: { category: CategoryRoute }) {
   const config = getCategoryConfig(category);
   const posts = getLatestPostsByCategory(category, 4);
+  const iconSrc = `/images/icon/${config.route}.png`;
 
   return (
     <section>
       <SectionHeader
         title={config.label}
         description={config.homeDescription}
+        iconSrc={iconSrc}
         emoji={config.emoji}
         viewAllLink={`/${config.route}`}
       />

@@ -1,11 +1,13 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface SectionHeaderProps {
   title: string;
   description?: string;
   viewAllLink?: string;
   emoji?: string;
+  iconSrc?: string;
   tone?: "default" | "light";
 }
 
@@ -14,6 +16,7 @@ export default function SectionHeader({
   description,
   viewAllLink,
   emoji,
+  iconSrc,
   tone = "default",
 }: SectionHeaderProps) {
   const titleClass = tone === "light" ? "text-white" : "text-[#123b6a]";
@@ -28,7 +31,17 @@ export default function SectionHeader({
     <div className="mb-8 flex items-end justify-between gap-6 group">
       <div>
         <div className="mb-2 flex items-center gap-2">
-          {emoji && <span className="text-2xl">{emoji}</span>}
+          {iconSrc ? (
+            <Image
+              src={iconSrc}
+              alt={title}
+              width={40}
+              height={40}
+              className="h-10 w-10 object-contain"
+            />
+          ) : (
+            emoji && <span className="text-2xl">{emoji}</span>
+          )}
           <h2 className={`text-2xl font-bold ${titleClass}`}>{title}</h2>
         </div>
         {description && <p className={`text-sm ${descriptionClass}`}>{description}</p>}
