@@ -35,9 +35,9 @@ export default function SectionHeader({
             <Image
               src={iconSrc}
               alt={title}
-              width={40}
-              height={40}
-              className="h-10 w-10 object-contain"
+              width={56}
+              height={56}
+              className="h-12 w-12 object-contain sm:h-14 sm:w-14"
             />
           ) : (
             emoji && <span className="text-2xl">{emoji}</span>
