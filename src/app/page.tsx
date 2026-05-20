@@ -12,6 +12,8 @@ import {
 import { getDisplayDate, getLatestPostsByCategory } from "@/lib/content";
 import { buildEventJsonLd, isEventPost } from "@/lib/event-schema";
 
+const ICON_VERSION = "20260521b";
+
 function PlaceholderCard({ label }: { label: string }) {
   return (
     <article className="flex min-h-[280px] items-center justify-center rounded-[20px] border border-white/75 bg-white/90 p-6 shadow-[0_14px_34px_rgba(15,23,42,0.1)] backdrop-blur-sm">
@@ -26,7 +28,7 @@ function PlaceholderCard({ label }: { label: string }) {
 function HomeSection({ category }: { category: CategoryRoute }) {
   const config = getCategoryConfig(category);
   const posts = getLatestPostsByCategory(category, 4);
-  const iconSrc = `/images/icon/${config.route}.png`;
+  const iconSrc = `/images/icon/${config.route}.png?v=${ICON_VERSION}`;
 
   return (
     <section>

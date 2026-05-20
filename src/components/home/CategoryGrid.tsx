@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { CATEGORY_ORDER, getCategoryConfig } from "@/lib/content-config";
 
+const ICON_VERSION = "20260521b";
+
 const colorMap: Record<string, string> = {
   festivals: "bg-rose-50/80 text-rose-600",
   benefits: "bg-emerald-50/80 text-emerald-600",
@@ -22,7 +24,7 @@ export default function CategoryGrid() {
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
           {CATEGORY_ORDER.map((category) => {
             const config = getCategoryConfig(category);
-            const iconSrc = `/images/icon/${config.route}.png`;
+            const iconSrc = `/images/icon/${config.route}.png?v=${ICON_VERSION}`;
 
             return (
               <Link
