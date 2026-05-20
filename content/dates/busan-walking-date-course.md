@@ -2,13 +2,13 @@
 title: 부산 뚜벅이 데이트코스 추천, 지하철·버스로 이동하기 좋은 하루 코스
 date: 2026-05-21
 category: dates
-image: /images/dates/busan-walking-date-course.webp
+image: /images/dates/busan-walking-date-course-v2.webp
 excerpt: 부산 뚜벅이 데이트코스는 이동 동선이 핵심입니다. 전포, 부산시민공원, 광안리를 연결해 차 없이도 편하게 즐기는 하루 코스를 정리했습니다.
 ---
 
 # 부산 뚜벅이 데이트코스 추천, 지하철·버스로 이동하기 좋은 하루 코스
 
-![부산 뚜벅이 데이트코스 썸네일](/images/dates/busan-walking-date-course.webp)
+![부산 뚜벅이 데이트코스 썸네일](/images/dates/busan-walking-date-course-v2.webp)
 
 부산 뚜벅이 데이트코스를 찾는다면 가장 먼저 생각해야 할 것은 예쁜 장소보다 이동 동선입니다. 부산은 바다, 카페, 야경이 모두 매력적인 도시지만 막상 차 없이 움직여보면 생각보다 환승과 도보 시간이 크게 느껴질 때가 많습니다. 특히 주말 오후에는 해운대나 광안리 쪽 도로가 막히기 쉬워서, 오히려 지하철과 버스를 잘 섞는 코스가 더 편할 때도 많습니다.
 
