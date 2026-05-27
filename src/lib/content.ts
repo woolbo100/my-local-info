@@ -7,6 +7,7 @@ import {
   DEFAULT_THUMBNAIL,
   type CategoryRoute,
 } from "@/lib/content-config";
+import { resolveBlogCategory, type BlogCategory } from "@/lib/blog-categories";
 
 const contentRoot = path.join(process.cwd(), "content");
 
@@ -15,6 +16,7 @@ export interface ContentPost {
   slug: string;
   category: CategoryRoute;
   categoryLabel: string;
+  blogCategory?: BlogCategory;
   date: string;
   excerpt: string;
   metaDescription?: string;
@@ -132,12 +134,20 @@ function mapFileToPost(category: CategoryRoute, fullPath: string): ContentPost {
     ? data.tags.map((tag) => String(tag).trim()).filter(Boolean)
     : [];
   const tags = parsedTags.length > 0 ? parsedTags : buildFallbackTags(category, title, slug);
+  const blogCategory =
+    category === "blog"
+      ? resolveBlogCategory(
+          slug,
+          data.blogCategory ? String(data.blogCategory).trim() : null
+        )
+      : undefined;
 
   return {
     title,
     slug,
     category,
     categoryLabel: CATEGORY_CONFIG[category].label,
+    blogCategory,
     date: normalizeDate(data.date),
     excerpt,
     metaDescription,

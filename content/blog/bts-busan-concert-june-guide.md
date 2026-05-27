@@ -3,6 +3,7 @@ title: 방탄소년단 부산 콘서트 6월 일정 총정리｜예매 포인트
 slug: bts-busan-concert-june-guide
 date: 2026-04-30
 category: blog
+blogCategory: "부산 여행"
 image: /images/blog/bts-busan-concert.webp
 thumbnail: /images/blog/bts-busan-concert.webp
 excerpt: 방탄소년단(BTS) 6월 부산 콘서트 일정, 예매 포인트, 날짜별 차이와 숙소·교통 팁까지 팬들이 많이 궁금해하는 내용을 한 번에 정리했습니다.

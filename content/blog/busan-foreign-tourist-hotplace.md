@@ -3,6 +3,7 @@ title: "외국인 관광객 500만 시대, 부산 여행 처음이라면 꼭 가
 slug: "busan-foreign-tourist-hotplace"
 date: "2026-04-26"
 category: "blog"
+blogCategory: "부산 여행"
 image: "/images/blog/busan-travel-compare.webp"
 thumbnail: "/images/blog/busan-travel-compare.webp"
 excerpt: "부산 외국인 관광객 증가 흐름과 함께 처음 부산 여행에서 많이 고르는 대표 코스를 정리했습니다. 해운대, 남포동, 감천문화마을 중 어떤 선택이 잘 맞는지 현실적으로 확인해보세요."

@@ -3,6 +3,7 @@ title: "부산 부처님오신날 절 추천 TOP 7, 연등 보러 가기 좋은 
 slug: "busan-buddhas-birthday-temple-top7"
 date: "2026-05-02"
 category: "blog"
+blogCategory: "부산 여행"
 image: "/images/blog/busan-buddhas-birthday-temple-top7.webp"
 thumbnail: "/images/blog/busan-buddhas-birthday-temple-top7.webp"
 excerpt: "부산 부처님오신날 절 추천 TOP 7을 정리했습니다. 해동용궁사, 삼광사, 범어사 등 연등 명소와 부모님 모시고 가기 좋은 사찰을 비교해보세요."

@@ -3,6 +3,7 @@ title: 부산 가족사진 잘 찍는 스튜디오 추천, 실제 후기 좋은 
 slug: "busan-family-photo-studio-top4"
 date: 2026-05-11
 category: blog
+blogCategory: "부산 여행"
 image: /images/blog/busan-family-photo-studio-thumbnail.webp
 excerpt: 부산 가족사진 잘 찍는 스튜디오 추천부터 가격 비교, 부모님 만족도, 실제 후기 좋은 곳까지 한 번에 정리했습니다.
 metaDescription: 부산 가족사진 스튜디오 추천 4곳을 분위기, 가격대, 부모님 만족도, 아이 동반 편의 기준으로 비교했습니다. 환갑, 칠순, 리마인드 웨딩처럼 상황별 선택 팁도 함께 정리했습니다.

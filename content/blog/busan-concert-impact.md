@@ -3,6 +3,7 @@ title: "부산 콘서트 영향, 숙소 가격과 여행 수요가 달라지는 
 slug: "busan-concert-impact"
 date: "2026-04-11"
 category: "blog"
+blogCategory: "AI·창업"
 image: "/images/blog/busan-concert-impact.webp"
 thumbnail: "/images/blog/busan-concert-impact.webp"
 excerpt: "부산 콘서트가 숙소 가격, 관광 수요, 여행 흐름에 어떤 영향을 주는지 현실적인 기준으로 정리했습니다."

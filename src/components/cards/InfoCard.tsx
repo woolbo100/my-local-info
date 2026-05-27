@@ -14,6 +14,19 @@ interface InfoCardProps {
   type?: "benefit" | "place" | "festival" | "blog";
 }
 
+const CATEGORY_COLORS_BY_LABEL: Record<string, string> = {
+  "부산 여행": "border-sky-100 bg-sky-50/95 text-sky-700",
+  "데이트·맛집": "border-rose-100 bg-rose-50/95 text-rose-700",
+  "AI·창업": "border-indigo-100 bg-indigo-50/95 text-indigo-700",
+};
+
+const CATEGORY_COLORS_BY_TYPE: Record<string, string> = {
+  festival: "border-red-100 bg-red-50/95 text-red-700",
+  benefit: "border-emerald-100 bg-emerald-50/95 text-emerald-700",
+  place: "border-blue-100 bg-blue-50/95 text-blue-700",
+  blog: "border-slate-200 bg-slate-100/95 text-slate-700",
+};
+
 export default function InfoCard({
   title,
   description,
@@ -27,29 +40,13 @@ export default function InfoCard({
 }: InfoCardProps) {
   const normalizedCategory = (category || "").trim();
   const visibleTags = (tags || []).slice(0, 3);
-  const secondaryMeta = (location || "").trim() || visibleTags.join(" · ") || description;
+  const secondaryMeta =
+    (location || "").trim() || visibleTags.join(" · ") || description;
   const secondaryIcon = (location || "").trim() ? "📍" : "🏷️";
-
-  const categoryColorsByLabel: Record<string, string> = {
-    "축제/행사": "border-red-100 bg-red-50/95 text-red-700",
-    "지원/혜택": "border-emerald-100 bg-emerald-50/95 text-emerald-700",
-    "부산 맛집": "border-amber-100 bg-amber-50/95 text-amber-700",
-    핫플레이스: "border-blue-100 bg-blue-50/95 text-blue-700",
-    "데이트 코스": "border-pink-100 bg-pink-50/95 text-pink-700",
-    블로그: "border-slate-200 bg-slate-100/95 text-slate-700",
-  };
-
-  const categoryColorsByType: Record<string, string> = {
-    festival: "border-red-100 bg-red-50/95 text-red-700",
-    benefit: "border-emerald-100 bg-emerald-50/95 text-emerald-700",
-    place: "border-blue-100 bg-blue-50/95 text-blue-700",
-    blog: "border-slate-200 bg-slate-100/95 text-slate-700",
-  };
-
   const badgeClass =
-    categoryColorsByLabel[normalizedCategory] ||
-    categoryColorsByType[type] ||
-    categoryColorsByType.place;
+    CATEGORY_COLORS_BY_LABEL[normalizedCategory] ||
+    CATEGORY_COLORS_BY_TYPE[type] ||
+    CATEGORY_COLORS_BY_TYPE.place;
 
   return (
     <Link href={href} className="group block h-full">
@@ -102,7 +99,11 @@ export default function InfoCard({
           </p>
 
           <div className="space-y-2">
-            <div className={`flex min-h-[1.25rem] items-center text-xs text-slate-500 ${date ? "" : "invisible"}`}>
+            <div
+              className={`flex min-h-[1.25rem] items-center text-xs text-slate-500 ${
+                date ? "" : "invisible"
+              }`}
+            >
               <span className="mr-1.5">📅</span>
               {date || "날짜 정보"}
             </div>
@@ -125,15 +126,15 @@ export default function InfoCard({
                   ))}
                 </div>
               ) : (
-                <div className="flex flex-wrap gap-1.5 invisible" aria-hidden="true">
+                <div className="invisible flex flex-wrap gap-1.5" aria-hidden="true">
                   <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] text-slate-500">
-                    #태그1
+                    #tag1
                   </span>
                   <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] text-slate-500">
-                    #태그2
+                    #tag2
                   </span>
                   <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] text-slate-500">
-                    #태그3
+                    #tag3
                   </span>
                 </div>
               )}

@@ -2,6 +2,7 @@
 title: 부산 키즈카페 추천! 인기 5곳 비교 및 후기, 가격·시설·주차까지 총정리
 date: 2026-05-09
 category: blog
+blogCategory: "데이트·맛집"
 image: /images/blog/busan-kidscafe-thumbnail.webp
 excerpt: 부산 인기 키즈카페 5곳을 가격, 시설, 주차, 추천 연령까지 비교했습니다. 실제 방문 흐름과 상황별 추천을 기준으로 우리 아이에게 맞는 곳을 고르기 쉽게 정리한 글입니다.
 metaDescription: 부산 키즈카페 추천 5곳을 가격, 시설, 주차, 추천 연령 기준으로 비교했습니다. 비 오는 날, 주말 외출, 영유아 방문처럼 상황별로 고르기 쉽게 정리했습니다.

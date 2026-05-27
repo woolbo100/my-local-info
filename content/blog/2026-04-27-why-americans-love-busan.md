@@ -2,6 +2,7 @@
 title: 미국인이 부산에 열광하는 3가지 이유, 서울보다 부산을 찾는 여행 트렌드
 date: 2026-04-27
 category: blog
+blogCategory: "부산 여행"
 image: /images/blog/why-americans-love-busan.webp
 thumbnail: /images/blog/why-americans-love-busan.webp
 excerpt: 미국인이 부산에 열광하는 이유를 밀면, BTS 팬덤, 바다 카페, 로컬 골목 문화 중심으로 정리했습니다.

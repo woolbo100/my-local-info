@@ -2,6 +2,7 @@
 title: "부산 데이트 코스 추천 BEST 5, 실패 없는 로맨틱 코스 정리"
 slug: "busan-date-course-best5"
 category: "blog"
+blogCategory: "데이트·맛집"
 date: "2026-04-13"
 image: "/images/blog/busan-date-course.webp"
 excerpt: "부산 데이트 코스 어디로 갈지 고민이라면? 광안리, 해운대, 남포동까지 실제 경험 기준으로 실패 없는 데이트 코스를 정리했습니다."

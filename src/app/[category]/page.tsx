@@ -1,17 +1,18 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import SectionHeader from "@/components/common/SectionHeader";
+import BlogCategoryFilter from "@/components/blog/BlogCategoryFilter";
 import InfoCard from "@/components/cards/InfoCard";
+import SectionHeader from "@/components/common/SectionHeader";
 import DarkOceanShell from "@/components/layout/DarkOceanShell";
+import { siteConfig } from "@/data/site";
+import { getDisplayDate, getPostsByCategory } from "@/lib/content";
 import {
   CATEGORY_ORDER,
   getCategoryConfig,
   isCategoryRoute,
   type CategoryRoute,
 } from "@/lib/content-config";
-import { getDisplayDate, getPostsByCategory } from "@/lib/content";
-import { siteConfig } from "@/data/site";
 
 interface CategoryPageProps {
   params: Promise<{
@@ -24,7 +25,7 @@ function PlaceholderCard({ label }: { label: string }) {
     <article className="flex min-h-[280px] items-center justify-center rounded-2xl border border-white/70 bg-white/92 p-6 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur-sm">
       <div className="text-center">
         <p className="text-sm font-semibold text-slate-500">{label}</p>
-        <p className="mt-2 text-xs text-slate-400">곧 업데이트 예정</p>
+        <p className="mt-2 text-xs text-slate-400">업데이트 예정</p>
       </div>
     </article>
   );
@@ -80,29 +81,35 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         tone="light"
       />
 
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {posts.length > 0
-          ? posts.map((post) => (
-              <InfoCard
-                key={post.route}
-                title={post.title}
-                description={post.excerpt}
-                date={getDisplayDate(post)}
-                location={post.location}
-                category={post.categoryLabel}
-                tags={post.tags}
-                image={post.thumbnail}
-                href={post.route}
-                type={config.cardType}
-              />
-            ))
-          : Array.from({ length: 4 }).map((_, index) => (
-              <PlaceholderCard
-                key={`${config.route}-${index}`}
-                label={`${config.label} 콘텐츠`}
-              />
-            ))}
-      </div>
+      {typedCategory === "blog" ? (
+        <Suspense fallback={<div className="h-10" />}>
+          <BlogCategoryFilter posts={posts} />
+        </Suspense>
+      ) : (
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {posts.length > 0
+            ? posts.map((post) => (
+                <InfoCard
+                  key={post.route}
+                  title={post.title}
+                  description={post.excerpt}
+                  date={getDisplayDate(post)}
+                  location={post.location}
+                  category={post.categoryLabel}
+                  tags={post.tags}
+                  image={post.thumbnail}
+                  href={post.route}
+                  type={config.cardType}
+                />
+              ))
+            : Array.from({ length: 4 }).map((_, index) => (
+                <PlaceholderCard
+                  key={`${config.route}-${index}`}
+                  label={`${config.label} 콘텐츠`}
+                />
+              ))}
+        </div>
+      )}
     </DarkOceanShell>
   );
 }
