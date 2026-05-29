@@ -21,6 +21,12 @@ npm run dev
 
 이 프로젝트는 GitHub Actions를 통해 자동으로 배포됩니다. 정상적인 배포를 위해 아래 **GitHub Secrets** 설정을 완료해주세요.
 
+### 운영 배포 원칙
+
+- `busan-now.com` 운영 배포는 **Cloudflare Pages만 사용**합니다.
+- 별도 요청이 없는 한 Vercel 배포는 진행하지 않습니다.
+- 운영 반영 확인은 `busan-now.com` 기준으로 확인합니다.
+
 ### 1단계: 클라우드플레어 인증 관리
 깃허브 리포지토리의 **Settings > Secrets and variables > Actions** 메뉴에서 다음 값을 추가합니다.
 

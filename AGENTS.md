@@ -217,3 +217,5 @@ excerpt: 120~160자 이내 요약문
 - update links
 - keep SEO structure
 - keep category values fixed to `festivals`, `benefits`, `food`, `hotplaces`, `dates`, `blog`
+- production deploy for this Busan site must use Cloudflare Pages only
+- do not deploy this project to Vercel unless the user explicitly asks for a separate preview
