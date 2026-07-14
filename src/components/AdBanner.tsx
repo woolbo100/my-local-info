@@ -2,6 +2,12 @@
 
 import React, { useEffect } from "react";
 
+declare global {
+  interface Window {
+    adsbygoogle?: unknown[];
+  }
+}
+
 interface AdBannerProps {
   adSlot?: string;
   adFormat?: string;
@@ -19,7 +25,8 @@ const AdBanner: React.FC<AdBannerProps> = ({
   useEffect(() => {
     if (isAdsenseEnabled) {
       try {
-        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+        const adsbygoogle = (window.adsbygoogle ??= []);
+        adsbygoogle.push({});
       } catch (err) {
         console.error("AdSense push error:", err);
       }
